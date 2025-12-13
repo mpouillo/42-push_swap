@@ -1,0 +1,10 @@
+# hidden folders
+.vscode
+
+# compilation files
+.build
+*.d
+*.o
+*.out
+*.gch
+push_swap
