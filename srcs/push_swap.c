@@ -15,13 +15,23 @@
 int	main(int argc, char **argv)
 {
 	t_stack	*stack;
+	int		item;
 
-	(void) argc;
-	(void) argv;
-	char	tmp[] = {1, 2, 3};
-	stack = stack_create(tmp, 3);
-	__builtin_printf("%i\n", (stack->head)->item);
-	stack_pop(stack);
-	__builtin_printf("%i\n", (stack->head)->item);
+	if (argc < 2)
+		return (-1);
+
+	stack = stack_create(argv + 1, argc - 1);
+
+	ft_printf("Popping input values:\n");
+	while ((item = stack_pop(stack)))
+		ft_printf("%i\n", item);
+
+	ft_printf("Adding test values (1, 2, 3).\n");
+	for (int i = 1; i < 4; i++)
+		stack_push(stack, i);
+
+	ft_printf("Popping test values:\n");
+	while ((item = stack_pop(stack)))
+		ft_printf("%i\n", item);
 	return (0);
 }
