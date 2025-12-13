@@ -16,7 +16,6 @@ int	ft_atoi(const char *nptr)
 {
 	size_t	i;
 	int		res;
-	int		tmp;
 	int		sign;
 
 	res = 0;
@@ -33,7 +32,6 @@ int	ft_atoi(const char *nptr)
 		i++;
 	while (ft_isdigit(nptr[i]))
 	{
-		tmp = res;
 		res = res * 10 + nptr[i] - '0';
 		i++;
 	}
