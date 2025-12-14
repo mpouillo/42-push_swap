@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 10:29:29 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/13 16:08:07 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/14 12:19:39 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@ int	main(int argc, char **argv)
 {
 	t_stack	*stack;
 	int		item;
+	int		disorder;
 
 	if (argc < 2)
 		return (-1);
 
 	stack = stack_create(argv + 1, argc - 1);
-	printf("disorder= %f\n", compute_disorder(*stack)); //TODO: ft_printf("%f")
+	disorder = compute_disorder(*stack);
+	ft_printf("Disorder = %i.%.2i\n", disorder / 100, disorder % 100);
 
 	ft_printf("Popping input values:\n");
 	while ((item = stack_pop(stack)))
