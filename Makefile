@@ -11,10 +11,11 @@ OBJ_DIR			:= $(BUILD_DIR)/objs
 DEP_DIR			:= $(BUILD_DIR)/deps
 
 CC				:= cc
-CFLAGS			= -Wall -Werror -Wextra -I$(INCL_DIR)
+CFLAGS			= -Wall -Werror -Wextra -I$(INCL_DIR) -g # TODO: retirer -g ?
 
 SRCS :=			push_swap.c \
-				stack_utils.c
+				stack_utils.c \
+				compute_disorder.c
 
 SRCS_PATH		:= $(addprefix $(SRC_DIR)/,$(SRCS))
 OBJS			:= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS_PATH))

@@ -23,9 +23,9 @@
 
 typedef struct s_node
 {
-	int		item;
-	void	*next;
-	void	*prev;
+	int				item;
+	struct s_node	*next;
+	struct s_node	*prev;
 } t_node;
 
 typedef struct s_stack
@@ -37,5 +37,6 @@ typedef struct s_stack
 t_stack	*stack_create(char **item_list, int size);
 void	stack_push(t_stack *stack, int item);
 int		stack_pop(t_stack *stack);
+float	compute_disorder(t_stack a);
 
 #endif
