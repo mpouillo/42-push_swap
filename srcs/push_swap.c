@@ -12,6 +12,8 @@
 
 #include "../includes/push_swap.h"
 
+#include <stdio.h>
+
 int	main(int argc, char **argv)
 {
 	t_stack	*stack;
@@ -21,6 +23,7 @@ int	main(int argc, char **argv)
 		return (-1);
 
 	stack = stack_create(argv + 1, argc - 1);
+	printf("disorder= %f\n", compute_disorder(*stack)); //TODO: ft_printf("%f")
 
 	ft_printf("Popping input values:\n");
 	while ((item = stack_pop(stack)))
