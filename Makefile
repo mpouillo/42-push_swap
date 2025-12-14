@@ -16,7 +16,8 @@ CFLAGS			= -Wall -Werror -Wextra -I$(INCL_DIR)
 SRCS :=			push_swap.c \
 				stack_utils.c \
 				compute_disorder.c \
-				validate_args.c
+				validate_args.c \
+				stack_operations.c
 
 SRCS_PATH		:= $(addprefix $(SRC_DIR)/,$(SRCS))
 OBJS			:= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS_PATH))

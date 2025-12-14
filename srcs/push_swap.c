@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 10:29:29 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/14 14:34:31 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/14 17:10:39 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int	main(int argc, char **argv)
 {
 	t_stack	*stack;
+	t_stack	*stack2;
+	t_node	*cur;
 	int		item;
 	int		disorder;
 
@@ -49,14 +51,65 @@ int	main(int argc, char **argv)
 	ft_printf("Popping input values:\n");
 	while ((item = stack_pop(stack)))
 		ft_printf("%i\n", item);
-	ft_printf("Adding test values (1, 2, 3).\n");
-	for (int i = 1; i < 4; i++)
+
+	ft_printf("Adding test values (4, 3, 2 ,1).\n");
+	for (int i = 4; i > 0; i--)
 		stack_push(stack, i);
+
 	ft_printf("Popping test values:\n");
 	while ((item = stack_pop(stack)))
 		ft_printf("%i\n", item);
 
+	ft_printf("Adding test values (4, 3, 2, 1).\n");
+	for (int i = 4; i > 0; i--)
+		stack_push(stack, i);
+
+	ft_printf("Rotating stack up by 1:\n");
+	stack_rotate_up(stack);
+	cur = stack->head;
+	while (cur)
+	{
+		ft_printf("%i\n", cur->item);
+		cur = cur->next;
+	}
+
+	ft_printf("Rotating stack down by 1:\n");
+	stack_rotate_down(stack);
+	cur = stack->head;
+	while (cur)
+	{
+		ft_printf("%i\n", cur->item);
+		cur = cur->next;
+	}
+
+	ft_printf("Creating stack 2 (5, 6, 7, 8):\n");
+	char *arr[4] = {"5", "6", "7", "8"};
+	stack2 = stack_create(arr, 4);
+	cur = stack2->head;
+	while (cur)
+	{
+		ft_printf("%i\n", cur->item);
+		cur = cur->next;
+	}
+	ft_printf("Swapping both stacks' first element:");
+	stack_swap(stack, stack2);
+	ft_printf("Stack 1:\n");
+	cur = stack->head;
+	while (cur)
+	{
+		ft_printf("%i\n", cur->item);
+		cur = cur->next;
+	}
+	ft_printf("Stack 2:\n");
+	cur = stack2->head;
+	while (cur)
+	{
+		ft_printf("%i\n", cur->item);
+		cur = cur->next;
+	}
+
 	// free and return
 	stack_delete(stack);
+	stack_delete(stack2);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:20:19 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/14 13:13:19 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/14 16:29:30 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_node	*node_get_last(t_node *node)
 }
 
 // Add new to the end of of a list of nodes.
-static void	node_add_back(t_node **node, t_node *new)
+void	node_add_back(t_node **node, t_node *new)
 {
 	t_node	*last;
 
@@ -89,37 +89,6 @@ t_stack	*stack_create(char **item_list, size_t size)
 	if (!stack)
 		return (NULL);
 	return (stack);
-}
-
-// Add an item to the top of a stack.
-void	stack_push(t_stack *stack, int item)
-{
-	t_node	*node;
-
-	if (!stack)
-		return ;
-	node = node_create(item);
-	node->next = stack->head;
-	stack->head = node;
-	stack->length += 1;
-}
-
-// Remove and return the topmost item from a stack.
-int	stack_pop(t_stack *stack)
-{
-	t_node	*node;
-	int		item;
-
-	if (!stack)
-		return (0); // jsp ce qu'on est censé return si la liste est vide
-	node = stack->head;
-	if (node == NULL)
-		return (0); // jsp ce qu'on est censé return si la liste est vide
-	stack->head = node->next;
-	item = node->item;
-	free(node);
-	stack->length -= 1;
-	return (item);
 }
 
 void	stack_delete(t_stack *stack)
