@@ -1,0 +1,2 @@
+cc -Wall -Werror -Wextra -g tests/*.c tests/*.h includes/*.h srcs/compute_disorder.c srcs/stack_operations.c srcs/stack_utils.c srcs/validate_args.c -Llibftprintf -lftprintf \
+&& valgrind --leak-check=full --show-leak-kinds=all ./a.out
