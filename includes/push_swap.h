@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 12:15:41 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/13 16:02:26 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/14 13:03:30 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ typedef struct s_stack
 	t_node	*head;
 } t_stack;
 
-t_stack	*stack_create(char **item_list, int size);
+t_stack	*stack_create(char **item_list, size_t size);
 void	stack_push(t_stack *stack, int item);
 int		stack_pop(t_stack *stack);
+void	stack_delete(t_stack *stack);
 
 #endif
