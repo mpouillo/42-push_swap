@@ -11,7 +11,7 @@ OBJ_DIR			:= $(BUILD_DIR)/objs
 DEP_DIR			:= $(BUILD_DIR)/deps
 
 CC				:= cc
-CFLAGS			= -Wall -Werror -Wextra -I$(INCL_DIR) -g # TODO: retirer -g ?
+CFLAGS			= -Wall -Werror -Wextra -I$(INCL_DIR)
 
 SRCS :=			push_swap.c \
 				stack_utils.c \
@@ -38,7 +38,7 @@ libftprintf:
 	$(MAKE) -C $(LIBFTPRINTF_DIR) all
 
 debug:
-	@$(MAKE) CFLAGS+="-g" all
+	@$(MAKE) CFLAGS+="-g" re
 	
 $(NAME):  $(LIBFTPRINTF) $(OBJS)
 	@echo "$(YELLOW)LINKING...$(RESET)"
