@@ -1,5 +1,6 @@
 # hidden folders
 .vscode
+.idea
 
 # compilation files
 .build
