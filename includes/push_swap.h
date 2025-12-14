@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 12:15:41 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/14 14:03:33 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/14 14:03:33 by mpouillo         ###   ########.fr       */   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,13 @@
 # include "../libftprintf/includes/ft_printf.h"
 # include "../libftprintf/libft/libft.h"
 
-# define SUCCESS	1
-# define ERROR		-1
+# ifndef SUCCESS
+#  define SUCCESS	1
+# endif
+
+# ifndef ERROR
+#  define ERROR		0
+# endif
 
 typedef struct s_node
 {
@@ -39,5 +44,7 @@ void	stack_push(t_stack *stack, int item);
 int		stack_pop(t_stack *stack);
 void	stack_delete(t_stack *stack);
 int		compute_disorder(t_stack a);
+int		validate_args(char **args);
+int		check_duplicate(t_stack *stack);
 
 #endif
