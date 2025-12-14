@@ -1,0 +1,1 @@
+- Run tests on libftprintf with ERROR set to 0 and see if it didn't break anything

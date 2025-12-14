@@ -18,14 +18,6 @@
 # include "../libftprintf/includes/ft_printf.h"
 # include "../libftprintf/libft/libft.h"
 
-# ifndef SUCCESS
-#  define SUCCESS	1
-# endif
-
-# ifndef ERROR
-#  define ERROR		0
-# endif
-
 typedef struct s_node
 {
 	int				item;
@@ -53,8 +45,11 @@ t_node	*node_get_last(t_node *node);
 //		stack_operations.c
 int		stack_pop(t_stack *stack);
 void	stack_push(t_stack *stack, int item);
+void	stack_swap(t_stack *stack);
 void	stack_rotate_up(t_stack *stack);
 void	stack_rotate_down(t_stack *stack);
-void	stack_swap(t_stack *stack);
+
+//		pushswap_operations.c
+
 
 #endif
