@@ -6,28 +6,35 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 10:29:29 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/14 13:03:49 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/14 13:56:01 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-#include <stdio.h>
 
 int	main(int argc, char **argv)
 {
 	t_stack	*stack;
 	int		item;
 
-	if (argc < 2)
-		return (-1);
-
-	// validate args (all numbers, no duplicates)
+	if (argc < 2 || validate_args(argv + 1) == ERROR)
+	{
+		ft_printf("Invalid arguments. Only numbers are allowed.\n");
+		return (1);
+	}
 
 	stack = stack_create(argv + 1, argc - 1);
 	if (!stack)
-		return (-1);
+	{
+		ft_printf("An error occurred when creating the stack.\n");
+		return (1);
+	}
 
+	if (check_duplicate(stack) == ERROR)
+	{
+		ft_printf("Invalid arguments. Duplicates are not allowed.\n");
+		return (1);
+	}
 	ft_printf("Popping input values:\n");
 	while ((item = stack_pop(stack)))
 		ft_printf("%i\n", item);

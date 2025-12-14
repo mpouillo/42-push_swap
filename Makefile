@@ -14,7 +14,8 @@ CC				:= cc
 CFLAGS			= -Wall -Werror -Wextra -I$(INCL_DIR)
 
 SRCS :=			push_swap.c \
-				stack_utils.c
+				stack_utils.c \
+				validate_args.c
 
 SRCS_PATH		:= $(addprefix $(SRC_DIR)/,$(SRCS))
 OBJS			:= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS_PATH))
@@ -37,7 +38,8 @@ libftprintf:
 	$(MAKE) -C $(LIBFTPRINTF_DIR) all
 
 debug:
-	@$(MAKE) CFLAGS+="-g" all
+	@$(MAKE) CFLAGS+="-g" re
+	gdb ./$(NAME)
 	
 $(NAME):  $(LIBFTPRINTF) $(OBJS)
 	@echo "$(YELLOW)LINKING...$(RESET)"
