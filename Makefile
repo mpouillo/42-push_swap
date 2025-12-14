@@ -40,7 +40,7 @@ libftprintf:
 
 debug:
 	@$(MAKE) CFLAGS+="-g" re
-	gdb ./$(NAME)
+	gdb -tui ./$(NAME)
 	
 $(NAME):  $(LIBFTPRINTF) $(OBJS)
 	@echo "$(YELLOW)LINKING...$(RESET)"
