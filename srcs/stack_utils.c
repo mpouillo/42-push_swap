@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:20:19 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/13 16:05:43 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/14 13:13:19 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,44 +39,55 @@ t_node	*node_get_last(t_node *node)
 // Add new to the end of of a list of nodes.
 static void	node_add_back(t_node **node, t_node *new)
 {
+	t_node	*last;
+
 	if (!*node)
 		*node = new;
 	else
 	{
-		node_get_last(*node)->next = new;
-		new->prev = *node;
+		last = node_get_last(*node);
+		last->next = new;
+		new->prev = last;
 	}
 }
 
 // Initialize a stack.
-void	stack_init(t_stack *stack, char **item_list, int size)
+t_stack	*stack_init(t_stack *stack, char **item_list, int size)
 {
 	int		i;
 	t_node	*node;
-	t_node	*head;
 
-	node = NULL;
-	head = NULL;
+	stack->head = NULL;
+	stack->length = 0;
 	i = 0;
 	while (i < size)
 	{
 		node = node_create(ft_atoi(item_list[i]));
-		node_add_back(&head, node);
+		if (!node)
+		{
+			stack_delete(stack);
+			return (NULL);
+		}
+		node_add_back(&(stack->head), node);
+		stack->length += 1;
 		i++;
 	}
-	stack->head = head;
-	stack->length = size;
+	return (stack);
 }
 
 // Create a stack and fill it with a list of items.
-t_stack	*stack_create(char **item_list, int size)
+t_stack	*stack_create(char **item_list, size_t size)
 {
 	t_stack *stack;
 
-	if (!item_list || size == 0)
+	if (!item_list)
 		return (NULL);
 	stack = (t_stack *) ft_calloc(1, sizeof(t_stack));
-	stack_init(stack, item_list, size);
+	if (!stack)
+		return (NULL);
+	stack = stack_init(stack, item_list, size);
+	if (!stack)
+		return (NULL);
 	return (stack);
 }
 
@@ -97,6 +108,7 @@ void	stack_push(t_stack *stack, int item)
 int	stack_pop(t_stack *stack)
 {
 	t_node	*node;
+	int		item;
 
 	if (!stack)
 		return (0); // jsp ce qu'on est censé return si la liste est vide
@@ -104,6 +116,23 @@ int	stack_pop(t_stack *stack)
 	if (node == NULL)
 		return (0); // jsp ce qu'on est censé return si la liste est vide
 	stack->head = node->next;
+	item = node->item;
+	free(node);
 	stack->length -= 1;
-	return (node->item);
+	return (item);
+}
+
+void	stack_delete(t_stack *stack)
+{
+	t_node *current;
+	t_node	*tmp;
+
+	current = stack->head;
+	while (current)
+	{
+		tmp = current;
+		current = current->next;
+		free(tmp);
+	}
+	free(stack);
 }
