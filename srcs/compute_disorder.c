@@ -23,11 +23,11 @@ float	compute_disorder(t_stack a)
 	mistakes = 0;
 	total_pairs = 0;
 	i = 0;
-	while (i < a.length - 1)
+	while (i < a.length)
 	{
 		temp = a.head;
 		j = i + 1;
-		while (j < a.length - 1)
+		while (j < a.length)
 		{
 			total_pairs += 1;
 			if (temp->item > temp->next->item)
