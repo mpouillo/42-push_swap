@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:20:19 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/14 16:29:30 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/14 18:45:12 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ t_stack	*stack_create(char **item_list, size_t size)
 {
 	t_stack *stack;
 
-	if (!item_list)
-		return (NULL);
 	stack = (t_stack *) ft_calloc(1, sizeof(t_stack));
 	if (!stack)
 		return (NULL);

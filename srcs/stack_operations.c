@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 16:17:51 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/14 16:56:06 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/14 17:37:46 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int	stack_pop(t_stack *stack)
 	t_node	*node;
 	int		item;
 
-	if (!stack)
+	if (!stack || stack->length < 1)
 		return (0); // jsp ce qu'on est censé return si la liste est vide
 	node = stack->head;
-	if (node == NULL)
-		return (0); // jsp ce qu'on est censé return si la liste est vide
 	stack->head = node->next;
+	if (stack->head)
+		stack->head->prev = NULL;
 	item = node->item;
 	free(node);
 	stack->length -= 1;
@@ -36,18 +36,26 @@ int	stack_pop(t_stack *stack)
 // pb (push b): Take the first element at the top of a and put it at the top of b.
 // Do nothing if a is empty.
 
-// Add an item to the top of a stack.
+// Add an item at the top of a stack.
 void	stack_push(t_stack *stack, int item)
 {
 	t_node	*node;
 
-	if (!stack)
-		return ;
 	node = node_create(item);
 	node->next = stack->head;
+	node->prev = NULL;
+	if (stack->head)
+		stack->head->prev = node;
 	stack->head = node;
 	stack->length += 1;
 }
+
+/*
+void	pa(t_stack *b, t_stack *a)
+{
+	stack_push(a, stack_pop(b));
+}
+*/
 
 // sa (swap a): Swap the first two elements at the top of stack a.
 // Do nothing if there is only one or no elements.
@@ -57,13 +65,18 @@ void	stack_push(t_stack *stack, int item)
 
 // ss : sa and sb at the same time.
 
-void	stack_swap(t_stack *a, t_stack *b)
+void	stack_swap(t_stack *stack)
 {
-	int	tmp;
+	t_node *node;
 
-	tmp = stack_pop(b);
-	stack_push(b, stack_pop(a));
-	stack_push(a, tmp);
+	if (!stack || stack->length < 2)
+		return ;
+	node = stack->head->next;
+	stack->head->prev = node;
+	stack->head->next = node->next;
+	node->prev = NULL;
+	node->next = stack->head;
+	stack->head = node;
 }
 
 // ra (rotate a): Shift up all elements of stack a by one.
@@ -79,6 +92,8 @@ void	stack_rotate_up(t_stack *stack)
 	t_node	*node;
 	t_node	*last;
 
+	if (!stack || stack->length < 2)
+		return ;
 	last = node_get_last(stack->head);
 	node = stack->head->next;
 	node->prev = NULL;
@@ -100,6 +115,8 @@ void	stack_rotate_down(t_stack *stack)
 {
 	t_node	*node;
 
+	if (!stack || stack->length < 2)
+		return ;
 	node = node_get_last(stack->head);
 	node->next = stack->head;
 	node->prev->next = NULL;

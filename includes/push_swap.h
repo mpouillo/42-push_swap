@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 12:15:41 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/14 16:57:07 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/14 18:12:15 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ int		stack_pop(t_stack *stack);
 void	stack_push(t_stack *stack, int item);
 void	stack_rotate_up(t_stack *stack);
 void	stack_rotate_down(t_stack *stack);
-void	stack_swap(t_stack *a, t_stack *b);
+void	stack_swap(t_stack *stack);
 
 #endif
