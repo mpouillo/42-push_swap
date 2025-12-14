@@ -6,13 +6,13 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 15:38:15 by chafonta          #+#    #+#             */
-/*   Updated: 2025/12/14 12:19:38 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/14 14:41:59 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	compute_disorder(t_stack a)
+int	compute_disorder(t_stack stack)
 {
 	t_node	*temp;
 	size_t	mistakes;
@@ -20,14 +20,16 @@ int	compute_disorder(t_stack a)
 	size_t	i;
 	size_t	j;
 
+	if (stack.length < 2)
+		return (0);
 	mistakes = 0;
 	total_pairs = 0;
 	i = 0;
-	while (i < a.length)
+	while (i < stack.length)
 	{
-		temp = a.head;
+		temp = stack.head;
 		j = i + 1;
-		while (j < a.length)
+		while (j < stack.length)
 		{
 			total_pairs += 1;
 			if (temp->item > temp->next->item)
@@ -35,9 +37,8 @@ int	compute_disorder(t_stack a)
 			temp = temp->next;
 			j++;
 		}
-		a.head = a.head->next;
+		stack.head = stack.head->next;
 		i++;
 	}
-	int ret = (mistakes / total_pairs) * 100 + (mistakes * 100 / total_pairs);
-	return (ret);
+	return ((((long long) mistakes * 100) + (total_pairs / 2)) / total_pairs);
 }
