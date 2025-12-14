@@ -11,9 +11,10 @@ OBJ_DIR			:= $(BUILD_DIR)/objs
 DEP_DIR			:= $(BUILD_DIR)/deps
 
 CC				:= cc
-CFLAGS			:= -Wall -Werror -Wextra -I$(INCL_DIR)
+CFLAGS			= -Wall -Werror -Wextra -I$(INCL_DIR)
 
-SRCS :=			push_swap.c
+SRCS :=			push_swap.c \
+				stack_utils.c
 
 SRCS_PATH		:= $(addprefix $(SRC_DIR)/,$(SRCS))
 OBJS			:= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS_PATH))
@@ -35,6 +36,9 @@ all: libftprintf $(NAME)
 libftprintf:
 	$(MAKE) -C $(LIBFTPRINTF_DIR) all
 
+debug:
+	@$(MAKE) CFLAGS+="-g" all
+	
 $(NAME):  $(LIBFTPRINTF) $(OBJS)
 	@echo "$(YELLOW)LINKING...$(RESET)"
 	$(CC) $(CFLAGS) -o $(NAME) -L$(LIBFTPRINTF_DIR) $(OBJS) -lftprintf
@@ -64,4 +68,4 @@ re: fclean all
 
 -include $(DEPS)
 
-.PHONY: all clean fclean re libftprintf
+.PHONY: all clean fclean re libftprintf debug

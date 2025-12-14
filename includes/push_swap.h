@@ -34,4 +34,8 @@ typedef struct s_stack
 	t_node	*head;
 } t_stack;
 
+t_stack	*stack_create(char **item_list, int size);
+void	stack_push(t_stack *stack, int item);
+int		stack_pop(t_stack *stack);
+
 #endif
