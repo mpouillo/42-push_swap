@@ -1,2 +1,8 @@
-cc -Wall -Werror -Wextra -g tests/*.c tests/*.h includes/*.h srcs/compute_disorder.c srcs/stack_operations.c srcs/stack_utils.c srcs/validate_args.c -Llibftprintf -lftprintf \
-&& valgrind --leak-check=full --show-leak-kinds=all ./a.out
+#!/bin/bash
+
+SRC_FILES=$(find srcs/ -name "*.c" ! -name "push_swap.c")
+
+make &&
+cc -Wall -Werror -Wextra -g -o test.out $SRC_FILES tests/*.c -Llibftprintf -lftprintf \
+&& valgrind -s --leak-check=full --show-leak-kinds=all ./test.out $@
+&& rm ./test.out

@@ -1,36 +1,22 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   test_stack.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/14 18:11:28 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/14 18:52:24 by mpouillo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "tests.h"
 
 void	test_stack(t_stack *stack)
 {
-	int		item;
-
 	print_stack(stack);
 
 	ft_printf("Popping input values...\n");
-	while ((item = stack_pop(stack)))
-		ft_printf("%i\n", item);
+	for (size_t i = 0; i < stack->length; i++)
+		ft_printf("%i\n", stack_pop(stack));
 	print_stack(stack);
-	
+
 	ft_printf("Adding test values (4, 3, 2, 1)...\n");
 	for (int i = 4; i > 0; i--)
 		stack_push(stack, i);
 	print_stack(stack);
 
 	ft_printf("Popping test values...\n");
-	while ((item = stack_pop(stack)))
-		ft_printf("%i\n", item);
+	for (size_t i = 0; i < stack->length; i++)
+		ft_printf("%i\n", stack_pop(stack));
 	print_stack(stack);
 
 	ft_printf("Adding test values (4, 3, 2, 1)...\n");

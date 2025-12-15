@@ -97,7 +97,7 @@ $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR) $(DEP_DIR)
 	$(CC) $(CFLAGS) -c "$<" -o "$@" -MMD -MP -MF "$(DEP_DIR)/$(@F:.o=.d)"
 
 clean:
-	@echo "$(RED)CLEANING LIBFT BUILD DIRECTORIES...$(RESET)"
+	@echo "$(RED)CLEANING BUILD DIRECTORIES...$(RESET)"
 	$(RM) -r $(BUILD_DIR)
 
 fclean: clean

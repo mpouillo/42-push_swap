@@ -13,13 +13,8 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# ifndef SUCCESS
-#  define SUCCESS	1
-# endif
-
-# ifndef ERROR
-#  define ERROR		0
-# endif
+# define SUCCESS	1
+# define ERROR		-1
 
 # include "../libft/libft.h"
 # include <stdarg.h>

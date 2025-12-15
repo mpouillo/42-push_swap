@@ -104,7 +104,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR) $(DEP_DIR)
 	$(CC) $(CFLAGS) -c "$<" -o "$@" -MMD -MP -MF "$(DEP_DIR)/$(@F:.o=.d)"
 
 clean:
-	@echo "$(RED)CLEANING FT_PRINTF BUILD DIRECTORIES...$(RESET)"
+	@echo "$(RED)CLEANING BUILD DIRECTORIES...$(RESET)"
 	$(RM) -r $(BUILD_DIR)
 	$(MAKE) -C $(LIBFT_DIR) clean
 

@@ -13,11 +13,12 @@ DEP_DIR			:= $(BUILD_DIR)/deps
 CC				:= cc
 CFLAGS			= -Wall -Werror -Wextra -I$(INCL_DIR)
 
-SRCS :=			push_swap.c \
+SRCS :=			compute_disorder.c \
+				push_swap.c \
+				pushswap_operations.c \
+				stack_operations.c \
 				stack_utils.c \
-				compute_disorder.c \
-				validate_args.c \
-				stack_operations.c
+				validate_args.c
 
 SRCS_PATH		:= $(addprefix $(SRC_DIR)/,$(SRCS))
 OBJS			:= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS_PATH))
@@ -42,7 +43,7 @@ libftprintf:
 debug:
 	@$(MAKE) CFLAGS+="-g" re
 	gdb -tui ./$(NAME)
-	
+
 $(NAME):  $(LIBFTPRINTF) $(OBJS)
 	@echo "$(YELLOW)LINKING...$(RESET)"
 	$(CC) $(CFLAGS) -o $(NAME) -L$(LIBFTPRINTF_DIR) $(OBJS) -lftprintf
