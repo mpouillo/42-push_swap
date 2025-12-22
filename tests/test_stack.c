@@ -5,7 +5,7 @@ void	test_stack(t_stack *stack)
 	print_stack(stack);
 
 	ft_printf("Popping input values...\n");
-	for (size_t i = 0; i < stack->length; i++)
+	while (stack->length)
 		ft_printf("%i\n", stack_pop(stack));
 	print_stack(stack);
 
@@ -15,7 +15,7 @@ void	test_stack(t_stack *stack)
 	print_stack(stack);
 
 	ft_printf("Popping test values...\n");
-	for (size_t i = 0; i < stack->length; i++)
+	while (stack->length)
 		ft_printf("%i\n", stack_pop(stack));
 	print_stack(stack);
 
