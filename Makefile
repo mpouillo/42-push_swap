@@ -14,8 +14,10 @@ CC				:= cc
 CFLAGS			= -Wall -Werror -Wextra -I$(INCL_DIR)
 
 SRCS :=			compute_disorder.c \
+				insertion_sort.c \
 				push_swap.c \
 				pushswap_operations.c \
+				selection_sort.c \
 				stack_operations.c \
 				stack_utils.c \
 				validate_args.c
