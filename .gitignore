@@ -60,3 +60,10 @@ dkms.conf
 
 # build directories
 .build
+
+# text files
+*.txt
+
+# executables
+push_swap
+checker_linux
