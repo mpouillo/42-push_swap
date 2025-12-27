@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 12:15:41 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/27 12:16:37 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/27 14:35:32 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ typedef struct	s_pushswap
 	t_stack	*a;
 	t_stack	*b;
 	int		bench_mode;
-	int		strategy;
 	int		disorder;
+	int		strategy;
+	char	*complexity;
 	size_t	total_ops;
 	size_t	sa_count;
 	size_t	sb_count;

@@ -24,8 +24,9 @@ void	init_data(t_pushswap *data)
 	data->a = NULL;
 	data->b = NULL;
 	data->bench_mode = 0;
-	data->strategy = 0;
 	data->disorder = 0;
+	data->strategy = 0;
+	data->complexity = NULL;
 	data->total_ops = 0;
 	data->sa_count = 0;
 	data->sb_count = 0;

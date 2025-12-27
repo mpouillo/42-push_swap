@@ -61,6 +61,7 @@ void	selection_sort(t_pushswap *data)
 {
 	t_node	*smallest;
 
+	data->complexity = "O(n²)";
 	while (data->a->length > 0)
 	{
 		smallest = find_smallest(data->a);

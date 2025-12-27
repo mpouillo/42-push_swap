@@ -30,6 +30,7 @@ void	insertion_sort(t_pushswap *data)
 {
 	size_t	i;
 
+	data->complexity = "O(n²)";
 	i = 0;
 	while (i < data->a->length)
 	{
