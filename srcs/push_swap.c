@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 10:29:29 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/27 14:38:36 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/27 14:50:07 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,8 @@ static void	run_pushswap(t_pushswap *data, char **argv, int argc)
 	}
 	data->disorder = compute_disorder(*data->a);
 	pick_algorithm_and_run(data);
-	print_benchmark(data); // print to stderr
+	if (data->bench_mode == 1)
+		print_benchmark(data);
 }
 
 int	main(int argc, char **argv)
