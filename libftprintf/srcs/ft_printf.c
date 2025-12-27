@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpouillo <mpouillo@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 14:47:05 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/03 12:04:16 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/27 14:17:58 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,28 @@ static int	parse_format(t_data *tab, const char *format)
 	return (SUCCESS);
 }
 
+int	ft_dprintf(int fd, const char *format, ...)
+{
+	t_data	*tab;
+	int		ret;
+
+	if (!format)
+		return (-1);
+	tab = (t_data *) ft_calloc(sizeof(t_data), 1);
+	if (!tab)
+		return (-1);
+	tab->ret = 0;
+	tab->fd = fd;
+	va_start(tab->args, format);
+	if (parse_format(tab, format) == ERROR)
+		ret = -1;
+	else
+		ret = tab->ret;
+	va_end(tab->args);
+	free(tab);
+	return (ret);
+}
+
 int	ft_printf(const char *format, ...)
 {
 	t_data	*tab;
@@ -78,6 +100,7 @@ int	ft_printf(const char *format, ...)
 	if (!tab)
 		return (-1);
 	tab->ret = 0;
+	tab->fd = STDOUT_FILENO;
 	va_start(tab->args, format);
 	if (parse_format(tab, format) == ERROR)
 		ret = -1;

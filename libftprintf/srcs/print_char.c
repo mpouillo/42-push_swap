@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpouillo <mpouillo@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 08:57:40 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/03 12:29:06 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/27 14:11:16 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	putpadchar(t_data *tab, char c)
 
 	if (tab->dash)
 	{
-		retval = write(1, &c, sizeof(char));
+		retval = write(tab->fd, &c, sizeof(char));
 		if (retval != sizeof(char))
 			return (ERROR);
 		tab->ret += retval;
@@ -31,7 +31,7 @@ static int	putpadchar(t_data *tab, char c)
 	}
 	if (!tab->dash)
 	{
-		retval = write(1, &c, sizeof(char));
+		retval = write(tab->fd, &c, sizeof(char));
 		if (retval != sizeof(char))
 			return (ERROR);
 		tab->ret += retval;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_printing.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpouillo <mpouillo@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 12:59:17 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/03 12:40:41 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/27 14:12:28 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	putstrl(t_data *tab, char *s, size_t sz)
 {
 	int	retval;
 
-	retval = write(1, s, get_min(ft_strlen(s), sz));
+	retval = write(tab->fd, s, get_min(ft_strlen(s), sz));
 	if (retval != (int) sz)
 	{
 		tab->ret = ERROR;

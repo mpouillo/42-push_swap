@@ -3,18 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpouillo <mpouillo@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 08:54:59 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/03 12:31:36 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/27 14:13:59 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# define SUCCESS	1
-# define ERROR		-1
+# ifndef SUCCESS
+#  define SUCCESS	1
+# endif
+
+# ifndef ERROR
+#  define ERROR		-1
+# endif
 
 # include "../libft/libft.h"
 # include <stdarg.h>
@@ -26,6 +31,7 @@ typedef struct s_data
 	int		dash;
 	int		dot;
 	int		error;
+	int		fd;
 	int		hash;
 	int		is_neg;
 	int		plus;
@@ -37,6 +43,8 @@ typedef struct s_data
 }	t_data;
 
 int		ft_printf(const char *format, ...);
+int		ft_dprintf(int fd, const char *format, ...);
+
 void	print_char(t_data *tab);
 void	print_string(t_data *tab);
 void	print_pointer(t_data *tab);
