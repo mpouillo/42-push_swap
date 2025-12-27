@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 12:15:41 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/27 14:35:32 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/27 14:55:29 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	stack_push(t_stack *stack, int item);
 void	stack_swap(t_stack *stack);
 void	stack_rotate_up(t_stack *stack);
 void	stack_rotate_down(t_stack *stack);
+int		check_stack_sorted(t_stack *stack);
+
 
 //		pushswap_operations.c
 void	sa(t_pushswap *data);
@@ -88,6 +90,5 @@ void	selection_sort(t_pushswap *data);
 
 void	error_termination(void);
 void	delete_data(t_pushswap *data);
-void	init_data(t_pushswap *data);
 
 #endif

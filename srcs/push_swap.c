@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 10:29:29 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/27 14:50:07 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/27 14:52:32 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,6 @@ int	main(int argc, char **argv)
 	argc--;
 	argv++;
 	data = (t_pushswap *) ft_calloc(1, sizeof(t_pushswap));
-	init_data(data);
 	data->bench_mode = parse_bench_mode(&argv, &argc);
 	data->strategy = parse_strategy(&argv, &argc);
 	validate_args(argv, argc);

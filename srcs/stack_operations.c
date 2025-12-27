@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 12:49:07 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/15 12:49:09 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/27 14:55:16 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,18 @@ void	stack_rotate_down(t_stack *stack)
 	node->prev = NULL;
 	stack->head->prev = node;
 	stack->head = node;
+}
+
+int	check_stack_sorted(t_stack *stack)
+{
+	t_node	*node;
+
+	node = stack->head;
+	while (node && node->next)
+	{
+		if (node->item > node->next->item)
+			return (0);
+		node = node->next;
+	}
+	return (1);
 }

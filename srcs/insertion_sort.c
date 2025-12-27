@@ -12,20 +12,6 @@
 
 #include "../includes/push_swap.h"
 
-int	check_all_good(t_stack *stack)
-{
-	t_node	*node;
-
-	node = stack->head;
-	while (node && node->next)
-	{
-		if (node->item > node->next->item)
-			return (0);
-		node = node->next;
-	}
-	return (1);
-}
-
 void	insertion_sort(t_pushswap *data)
 {
 	size_t	i;
@@ -42,7 +28,7 @@ void	insertion_sort(t_pushswap *data)
 			i++;
 		}
 		pa(data);
-		if (check_all_good(data->a))
+		if (check_stack_sorted(data->a))
 			break ;
 		ra(data);
 	}
