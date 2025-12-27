@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   compute_disorder.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpouillo <mpouillo@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 15:38:15 by chafonta          #+#    #+#             */
-/*   Updated: 2025/12/14 14:41:59 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/27 09:15:28 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ int	compute_disorder(t_stack stack)
 		stack.head = stack.head->next;
 		i++;
 	}
-	return ((((long long) mistakes * 100) + (total_pairs / 2)) / total_pairs);
+	return ((((long long) mistakes * 1000) + (total_pairs / 2)) / total_pairs);
 }

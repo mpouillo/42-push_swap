@@ -4,51 +4,47 @@
 #define PUSHSWAP	0
 #define VERBOSE		1
 
-int	run_silent(t_stack *a, t_stack *b, size_t (*algorithm)(t_stack *, t_stack *))
+static void	run_silent(t_pushswap *data, void (*algorithm)(t_pushswap *))
 {
 	int		original_stdout;
 	int		dev_null;
-	size_t	ret;
 
 	fflush(stdout);
 	original_stdout = dup(STDOUT_FILENO);
 	dev_null = open("/dev/null", O_WRONLY);
 	dup2(dev_null, STDOUT_FILENO);
 	close(dev_null);
-	ret = algorithm(a, b);
+	algorithm(data);
 	fflush(stdout);
 	dup2(original_stdout, STDOUT_FILENO);
 	close(original_stdout);
-	return (ret);
+	ft_printf("Total operations: %i\n", data->total_ops);
 }
 
-int	run_verbose(t_stack *a, t_stack *b, size_t (*algorithm)(t_stack *, t_stack *))
+static void	run_verbose(t_pushswap *data, void (*algorithm)(t_pushswap *))
 {
-	size_t	ret;
-
 	ft_printf("UNSORTED STACK:\n");
-	print_stack(a);
-	ret = algorithm(a, b);
+	print_stack(data->a);
+	algorithm(data);
 	ft_printf("SORTED STACK:\n");
-	print_stack(a);
-	return (ret);
+	print_stack(data->a);
+	ft_printf("Total operations: %i\n", data->total_ops);
 }
 
-static void	test_algorithm(int argc, char **argv, int flag, size_t (*algorithm)(t_stack *, t_stack*))
+static void	test_algorithm(int argc, char **argv, int flag, void (*algorithm)(t_pushswap*))
 {
-	t_stack	*a;
-	t_stack	*b;
+	t_pushswap *data;
 
-	a = stack_create(argv + 1, argc - 1);
-	b = stack_create(NULL, 0);
+	data = (t_pushswap *) ft_calloc(1, sizeof(t_pushswap));
+	data->a = stack_create(argv + 1, argc - 1);
+	data->b = stack_create(NULL, 0);
 	if (flag == VERBOSE)
-		ft_printf("Total moves: %i\n", run_verbose(a, b, algorithm));
+		run_verbose(data, algorithm);
 	else if (flag == SILENT)
-		ft_printf("Total moves: %i\n", run_silent(a, b, algorithm));
+		run_silent(data, algorithm);
 	else
-		algorithm(a, b);
-	stack_delete(a);
-	stack_delete(b);
+		algorithm(data);
+	delete_data(data);
 }
 
 int main(int argc, char **argv)
@@ -79,7 +75,7 @@ int main(int argc, char **argv)
 		flag = PUSHSWAP;
 
 	if (ft_strncmp(argv[1], "insertion", ft_strlen("insertion")) == 0)
-		 test_algorithm(argc - 1, argv + 1, flag, insertion_sort);
+		test_algorithm(argc - 1, argv + 1, flag, insertion_sort);
 	else if (ft_strncmp(argv[1], "selection", ft_strlen("selection")) == 0)
 		test_algorithm(argc - 1, argv + 1, flag, selection_sort);
 

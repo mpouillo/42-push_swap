@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   validate_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpouillo <mpouillo@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 13:19:20 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/14 13:52:32 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/27 08:54:33 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	validate_args(char **args)
+int	check_digits(char **args)
 {
 	int	i;
 	int	j;
@@ -55,4 +55,19 @@ int	check_duplicate(t_stack *stack)
 		node = node->next;
 	}
 	return (SUCCESS);
+}
+
+void	validate_args(char **argv, int argc)
+{
+	t_stack *stack;
+
+	if (check_digits(argv) == ERROR)
+		error_termination();
+	stack = stack_create(argv, argc);
+	if (check_duplicate(stack) == ERROR)
+	{
+		stack_delete(stack);
+		error_termination();
+	}
+	stack_delete(stack);
 }

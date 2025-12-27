@@ -51,39 +51,25 @@ int	shortest_path_direction(t_stack *stack, t_node *goal)
 		return (CCW);
 }
 
-size_t	select_node(t_stack* a, t_stack *b, t_node *target, void (*r_function)(t_stack *))
+void	move_smallest_to_top(t_pushswap *data, t_node *target, void (*r_function)(t_pushswap *))
 {
-	size_t	ret;
-
-	ret = 0;
-	while (a->head != target)
-	{
-		r_function(a);
-		ret++;
-	}
-	pb(a, b);
-	ret++;
-	return (ret);
+	while (data->a->head != target)
+		r_function(data);
 }
 
-size_t	selection_sort(t_stack *a, t_stack *b)
+void	selection_sort(t_pushswap *data)
 {
 	t_node	*smallest;
-	size_t	ret;
 
-	ret = 0;
-	while (a->length > 0)
+	while (data->a->length > 0)
 	{
-		smallest = find_smallest(a);
-		if (shortest_path_direction(a, smallest) == CW)
-			ret += select_node(a, b, smallest, ra);
+		smallest = find_smallest(data->a);
+		if (shortest_path_direction(data->a, smallest) == CW)
+			move_smallest_to_top(data, smallest, ra);
 		else
-			ret += select_node(a, b, smallest, rra);
+			move_smallest_to_top(data, smallest, rra);
+		pb(data);
 	}
-	while (b->length > 0)
-	{
-		pa(a, b);
-		ret++;
-	}
-	return (ret);
+	while (data->b->length > 0)
+		pa(data);
 }

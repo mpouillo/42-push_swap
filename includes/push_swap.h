@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 12:15:41 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/26 19:10:17 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/27 12:16:37 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,45 @@
 # include "../libftprintf/includes/ft_printf.h"
 # include "../libftprintf/libft/libft.h"
 
-typedef struct s_node
+typedef struct	s_node
 {
 	int				item;
 	struct s_node	*next;
 	struct s_node	*prev;
 } t_node;
 
-typedef struct s_stack
+typedef struct	s_stack
 {
 	size_t	length;
 	t_node	*head;
 } t_stack;
 
+typedef struct	s_pushswap
+{
+	t_stack	*a;
+	t_stack	*b;
+	int		bench_mode;
+	int		strategy;
+	int		disorder;
+	size_t	total_ops;
+	size_t	sa_count;
+	size_t	sb_count;
+	size_t	ss_count;
+	size_t	pa_count;
+	size_t	pb_count;
+	size_t	ra_count;
+	size_t	rb_count;
+	size_t	rr_count;
+	size_t	rra_count;
+	size_t	rrb_count;
+	size_t	rrr_count;
+} t_pushswap;
+
 t_stack	*stack_create(char **item_list, size_t size);
 
 void	stack_delete(t_stack *stack);
 int		compute_disorder(t_stack a);
-int		validate_args(char **args);
-int		check_duplicate(t_stack *stack);
+void	validate_args(char **args, int argc);
 
 t_node	*node_create(int item);
 void	node_add_back(t_node **node, t_node *new);
@@ -50,19 +70,23 @@ void	stack_rotate_up(t_stack *stack);
 void	stack_rotate_down(t_stack *stack);
 
 //		pushswap_operations.c
-void	sa(t_stack *a);
-void	sb(t_stack *b);
-void	ss(t_stack *a, t_stack *b);
-void	pa(t_stack *a, t_stack *b);
-void	pb(t_stack *a, t_stack *b);
-void	ra(t_stack *a);
-void	rb(t_stack *b);
-void	rr(t_stack *a, t_stack *b);
-void	rra(t_stack *a);
-void	rrb(t_stack *b);
-void	rrr(t_stack *a, t_stack *b);
+void	sa(t_pushswap *data);
+void	sb(t_pushswap *data);
+void	ss(t_pushswap *data);
+void	pa(t_pushswap *data);
+void	pb(t_pushswap *data);
+void	ra(t_pushswap *data);
+void	rb(t_pushswap *data);
+void	rr(t_pushswap *data);
+void	rra(t_pushswap *data);
+void	rrb(t_pushswap *data);
+void	rrr(t_pushswap *data);
 
-size_t	insertion_sort(t_stack *a, t_stack *b);
-size_t	selection_sort(t_stack *a, t_stack *b);
+void	insertion_sort(t_pushswap *data);
+void	selection_sort(t_pushswap *data);
+
+void	error_termination(void);
+void	delete_data(t_pushswap *data);
+void	init_data(t_pushswap *data);
 
 #endif

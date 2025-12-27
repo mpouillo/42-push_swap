@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpouillo <mpouillo@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:20:19 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/14 18:45:12 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/27 10:25:13 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ void	stack_delete(t_stack *stack)
 	t_node *current;
 	t_node	*tmp;
 
+	if (!stack)
+		return ;
 	current = stack->head;
 	while (current)
 	{
@@ -102,4 +104,5 @@ void	stack_delete(t_stack *stack)
 		free(tmp);
 	}
 	free(stack);
+	stack = NULL;
 }

@@ -26,30 +26,23 @@ int	check_all_good(t_stack *stack)
 	return (1);
 }
 
-size_t	insertion_sort(t_stack *a, t_stack *b)
+void	insertion_sort(t_pushswap *data)
 {
 	size_t	i;
-	size_t	ret;
 
 	i = 0;
-	ret = 0;
-	while (i < a->length)
+	while (i < data->a->length)
 	{
 		i = 0;
-		pb(a, b);
-		ret++;
-		while (i < a->length && b->head->item < node_get_last(a->head)->item)
+		pb(data);
+		while (i < data->a->length && data->b->head->item < node_get_last(data->a->head)->item)
 		{
-			rra(a);
-			ret++;
+			rra(data);
 			i++;
 		}
-		pa(a, b);
-		ret++;
-		if (check_all_good(a))
+		pa(data);
+		if (check_all_good(data->a))
 			break ;
-		ra(a);
-		ret++;
+		ra(data);
 	}
-	return (ret);
 }
