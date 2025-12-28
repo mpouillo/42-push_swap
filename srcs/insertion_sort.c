@@ -12,24 +12,33 @@
 
 #include "../includes/push_swap.h"
 
+#define CW	1
+#define CCW	-1
+
 void	insertion_sort(t_pushswap *data)
 {
-	size_t	i;
+	size_t	rotations;
 
 	data->complexity = "O(n²)";
-	i = 0;
-	while (i < data->a->length)
+	if (check_stack_sorted(data->a))
+			return;
+	while (data->a->length > 0)
 	{
-		i = 0;
-		pb(data);
-		while (i < data->a->length && data->b->head->item < node_get_last(data->a->head)->item)
+		rotations = 0;
+		if (data->b->length == 0)
 		{
-			rra(data);
-			i++;
+			pb(data);
+			continue;
 		}
-		pa(data);
-		if (check_stack_sorted(data->a))
-			break ;
-		ra(data);
+		while (rotations < data->b->length && data->b->head->item > data->a->head->item)
+		{
+			rotations++;
+			rb(data);
+		}
+		pb(data);
+		while (rotations-- > 0)
+			rrb(data);
 	}
+	while (data->b->length > 0)
+		pa(data);
 }

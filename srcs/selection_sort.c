@@ -15,7 +15,7 @@
 #define CW	1
 #define CCW	-1
 
-t_node	*find_smallest(t_stack *stack)
+static t_node	*find_smallest(t_stack *stack)
 {
 	t_node *current;
 	t_node *smallest;
@@ -31,7 +31,7 @@ t_node	*find_smallest(t_stack *stack)
 	return (smallest);
 }
 
-int	shortest_path_direction(t_stack *stack, t_node *goal)
+static int	shortest_path_direction(t_stack *stack, t_node *goal)
 {
 	t_node	*start;
 	size_t	i;
@@ -51,7 +51,7 @@ int	shortest_path_direction(t_stack *stack, t_node *goal)
 		return (CCW);
 }
 
-void	move_smallest_to_top(t_pushswap *data, t_node *target, void (*r_function)(t_pushswap *))
+static void	move_smallest_to_top(t_pushswap *data, t_node *target, void (*r_function)(t_pushswap *))
 {
 	while (data->a->head != target)
 		r_function(data);
