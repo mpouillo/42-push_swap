@@ -78,6 +78,8 @@ int main(int argc, char **argv)
 		test_algorithm(argc - 1, argv + 1, flag, insertion_sort);
 	else if (ft_strncmp(argv[1], "selection", ft_strlen("selection")) == 0)
 		test_algorithm(argc - 1, argv + 1, flag, selection_sort);
+	else if (ft_strncmp(argv[1], "bubble", ft_strlen("bubble")) == 0)
+		test_algorithm(argc - 1, argv + 1, flag, bubble_sort);
 
 	return (0);
 }

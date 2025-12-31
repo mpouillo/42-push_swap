@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 10:29:29 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/27 14:52:32 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/31 09:24:06 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ static int	parse_bench_mode(char ***argv, int *argc)
 static void	pick_algorithm_and_run(t_pushswap *data)
 {
 	if (data->strategy == STRATEGY_SIMPLE)
-		selection_sort(data);
+		bubble_sort(data);						// to modify
 	else if (data->strategy == STRATEGY_MEDIUM)
-		selection_sort(data); // to modify
+		insertion_sort(data);					// to modify
 	else if (data->strategy == STRATEGY_COMPLEX)
-		selection_sort(data); // to modify
+		selection_sort(data);					// to modify
 	else
-		selection_sort(data); // to modify
+		selection_sort(data);					// to modify
 }
 
 char *get_strategy_string(t_pushswap *data)
@@ -87,9 +87,9 @@ void	print_benchmark(t_pushswap *data)
 	ft_dprintf(STDERR_FILENO, "[bench] disorder:          %.2i.%.2i%%\n", data->disorder / 10, data->disorder % 100);
 	ft_dprintf(STDERR_FILENO, "[bench] strategy:          %s / %s\n", get_strategy_string(data), data->complexity);
 	ft_dprintf(STDERR_FILENO, "[bench] total operations:  %i\n", data->total_ops);
-	ft_dprintf(STDERR_FILENO, "[bench] sa: %5u,  sb: %5u,  ss: %5u,  pa:  %5u,  pb:  %5u,\n", 
+	ft_dprintf(STDERR_FILENO, "[bench] sa: %5u,  sb: %5u,  ss: %5u,  pa:  %5u,  pb:  %5u,\n",
 		data->sa_count, data->sb_count, data->ss_count, data->pa_count, data->pb_count);
-	ft_dprintf(STDERR_FILENO, "[bench] ra: %5u,  rb: %5u,  rr: %5u,  rra: %5u,  rrb: %5u,  rrr: %5u\n", 
+	ft_dprintf(STDERR_FILENO, "[bench] ra: %5u,  rb: %5u,  rr: %5u,  rra: %5u,  rrb: %5u,  rrr: %5u\n",
 		data->ra_count, data->rb_count, data->rr_count, data->rra_count, data->rrb_count, data->rrr_count);
 }
 
@@ -113,7 +113,7 @@ static void	run_pushswap(t_pushswap *data, char **argv, int argc)
 int	main(int argc, char **argv)
 {
 	t_pushswap *data;
-	
+
 	if (argc < 2)
 		return (1);
 	argc--;

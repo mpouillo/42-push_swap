@@ -13,7 +13,8 @@ DEP_DIR			:= $(BUILD_DIR)/deps
 CC				:= cc
 CFLAGS			= -Wall -Werror -Wextra -I$(INCL_DIR)
 
-SRCS :=			compute_disorder.c \
+SRCS :=			bubble_sort.c \
+				compute_disorder.c \
 				data_handling.c \
 				error_handling.c \
 				insertion_sort.c \

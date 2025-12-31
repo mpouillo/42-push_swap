@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 12:15:41 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/27 14:55:29 by mpouillo         ###   ########.fr       */
+/*   Updated: 2025/12/31 09:10:42 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	rrr(t_pushswap *data);
 
 void	insertion_sort(t_pushswap *data);
 void	selection_sort(t_pushswap *data);
+void	bubble_sort(t_pushswap *data);
 
 void	error_termination(void);
 void	delete_data(t_pushswap *data);
