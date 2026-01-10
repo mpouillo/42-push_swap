@@ -21,16 +21,17 @@ void	insertion_sort(t_pushswap *data)
 
 	data->complexity = "O(n²)";
 	if (check_stack_sorted(data->a))
-			return;
+		return ;
 	while (data->a->length > 0)
 	{
 		rotations = 0;
 		if (data->b->length == 0)
 		{
 			pb(data);
-			continue;
+			continue ;
 		}
-		while (rotations < data->b->length && data->b->head->item > data->a->head->item)
+		while (rotations < data->b->length
+			&& data->b->head->item > data->a->head->item)
 		{
 			rotations++;
 			rb(data);

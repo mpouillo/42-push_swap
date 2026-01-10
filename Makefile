@@ -13,13 +13,19 @@ DEP_DIR			:= $(BUILD_DIR)/deps
 CC				:= cc
 CFLAGS			= -Wall -Werror -Wextra -I$(INCL_DIR)
 
-SRCS :=			bubble_sort.c \
+SRCS :=			benchmark_utils.c \
+				bubble_sort.c \
 				compute_disorder.c \
 				data_handling.c \
 				error_handling.c \
 				insertion_sort.c \
+				node_utils.c \
+				parsing_handling.c \
 				push_swap.c \
-				pushswap_operations.c \
+				pushswap_operations_p.c \
+				pushswap_operations_r.c \
+				pushswap_operations_rr.c \
+				pushswap_operations_s.c \
 				selection_sort.c \
 				stack_operations.c \
 				stack_utils.c \

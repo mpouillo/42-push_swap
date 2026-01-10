@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   stack_operations.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpouillo <mpouillo@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 12:49:07 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/27 14:55:16 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/10 12:35:51 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-// DEPRECATED.
 // Remove and return the topmost item from a stack.
 // SIGSEV if stack is empty.
 int	stack_pop(t_stack *stack)
@@ -26,16 +25,17 @@ int	stack_pop(t_stack *stack)
 		stack->head->prev = NULL;
 	item = node->item;
 	free(node);
+	node = NULL;
 	stack->length -= 1;
 	return (item);
 }
 
 // Add an item to the top of the stack.
-void	stack_push(t_stack *stack, int item)
+void	stack_push(t_pushswap *data, t_stack *stack, int item)
 {
 	t_node	*node;
 
-	node = node_create(item);
+	node = node_create(data, item);
 	node->next = stack->head;
 	node->prev = NULL;
 	if (stack->head)
@@ -48,7 +48,7 @@ void	stack_push(t_stack *stack, int item)
 // Do nothing if there is only one or no elements.
 void	stack_swap(t_stack *stack)
 {
-	t_node *node;
+	t_node	*node;
 
 	if (!stack || stack->length < 2)
 		return ;
@@ -92,18 +92,4 @@ void	stack_rotate_down(t_stack *stack)
 	node->prev = NULL;
 	stack->head->prev = node;
 	stack->head = node;
-}
-
-int	check_stack_sorted(t_stack *stack)
-{
-	t_node	*node;
-
-	node = stack->head;
-	while (node && node->next)
-	{
-		if (node->item > node->next->item)
-			return (0);
-		node = node->next;
-	}
-	return (1);
 }

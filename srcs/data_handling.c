@@ -14,7 +14,10 @@
 
 void	delete_data(t_pushswap *data)
 {
+	if (!data)
+		return ;
 	stack_delete(data->a);
 	stack_delete(data->b);
 	free(data);
+	data = NULL;
 }

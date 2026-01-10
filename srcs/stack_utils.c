@@ -3,95 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpouillo <mpouillo@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:20:19 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/27 10:25:13 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/10 12:36:10 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-// Create a new node and set its value to item.
-t_node	*node_create(int item)
-{
-	t_node	*node;
-
-	node = (t_node *) ft_calloc(1, sizeof(t_node));
-	if (!node)
-		return (NULL);
-	node->item = item;
-	node->next = NULL;
-	node->prev = NULL;
-	return (node);
-}
-
-// Get the last node from a list of nodes.
-t_node	*node_get_last(t_node *node)
-{
-	if (!node)
-		return (NULL);
-	while (node->next)
-		node = node->next;
-	return (node);
-}
-
-// Add new to the end of of a list of nodes.
-void	node_add_back(t_node **node, t_node *new)
-{
-	t_node	*last;
-
-	if (!*node)
-		*node = new;
-	else
-	{
-		last = node_get_last(*node);
-		last->next = new;
-		new->prev = last;
-	}
-}
-
-// Initialize a stack.
-t_stack	*stack_init(t_stack *stack, char **item_list, int size)
+// Create stack a and fill it with values from argv
+void	stack_init_a(t_pushswap *data)
 {
 	int		i;
 	t_node	*node;
 
-	stack->head = NULL;
-	stack->length = 0;
+	data->a = (t_stack *) ft_calloc(1, sizeof(t_stack));
+	if (!data->a)
+		error_termination(data);
+	data->a->head = NULL;
+	data->a->length = 0;
 	i = 0;
-	while (i < size)
+	while (data->argv[i])
 	{
-		node = node_create(ft_atoi(item_list[i]));
-		if (!node)
-		{
-			stack_delete(stack);
-			return (NULL);
-		}
-		node_add_back(&(stack->head), node);
-		stack->length += 1;
+		node = node_create(data, ft_atoi(data->argv[i]));
+		node_add_back(&(data->a->head), node);
+		data->a->length += 1;
 		i++;
 	}
-	return (stack);
 }
 
-// Create a stack and fill it with a list of items.
-t_stack	*stack_create(char **item_list, size_t size)
+// Create an empty stack b
+void	stack_init_b(t_pushswap *data)
 {
-	t_stack *stack;
-
-	stack = (t_stack *) ft_calloc(1, sizeof(t_stack));
-	if (!stack)
-		return (NULL);
-	stack = stack_init(stack, item_list, size);
-	if (!stack)
-		return (NULL);
-	return (stack);
+	data->b = (t_stack *) ft_calloc(1, sizeof(t_stack));
+	if (!data->b)
+		error_termination(data);
+	data->b->head = NULL;
+	data->b->length = 0;
 }
 
 void	stack_delete(t_stack *stack)
 {
-	t_node *current;
+	t_node	*current;
 	t_node	*tmp;
 
 	if (!stack)
@@ -102,7 +56,22 @@ void	stack_delete(t_stack *stack)
 		tmp = current;
 		current = current->next;
 		free(tmp);
+		tmp = NULL;
 	}
 	free(stack);
 	stack = NULL;
+}
+
+int	check_stack_sorted(t_stack *stack)
+{
+	t_node	*node;
+
+	node = stack->head;
+	while (node && node->next)
+	{
+		if (node->item > node->next->item)
+			return (0);
+		node = node->next;
+	}
+	return (1);
 }

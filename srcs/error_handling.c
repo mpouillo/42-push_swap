@@ -12,8 +12,9 @@
 
 #include "../includes/push_swap.h"
 
-void	error_termination(void)
+void	error_termination(t_pushswap *data)
 {
-	ft_printf("Error\n"); // must display on the standard error, maybe code ft_fprintf?
+	delete_data(data);
+	ft_dprintf(STDERR_FILENO, "Error\n");
 	exit(EXIT_FAILURE);
 }

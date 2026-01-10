@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   validate_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpouillo <mpouillo@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 13:19:20 by mpouillo          #+#    #+#             */
-/*   Updated: 2025/12/27 08:54:33 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/10 12:36:26 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	check_digits(char **args)
+static int	check_digits(char **args)
 {
 	int	i;
 	int	j;
@@ -32,7 +32,7 @@ int	check_digits(char **args)
 	return (SUCCESS);
 }
 
-int	stack_find_item(t_node *node, int item)
+static int	stack_find_item(t_node *node, int item)
 {
 	while (node)
 	{
@@ -43,9 +43,9 @@ int	stack_find_item(t_node *node, int item)
 	return (ERROR);
 }
 
-int	check_duplicate(t_stack *stack)
+static int	check_duplicate(t_stack *stack)
 {
-	t_node *node;
+	t_node	*node;
 
 	node = stack->head;
 	while (node)
@@ -57,17 +57,17 @@ int	check_duplicate(t_stack *stack)
 	return (SUCCESS);
 }
 
-void	validate_args(char **argv, int argc)
+void	validate_args(t_pushswap *data)
 {
-	t_stack *stack;
-
-	if (check_digits(argv) == ERROR)
-		error_termination();
-	stack = stack_create(argv, argc);
-	if (check_duplicate(stack) == ERROR)
+	if (check_digits(data->argv) == ERROR)
+		error_termination(data);
+	stack_init_a(data);
+	if (!data->a)
+		error_termination(data);
+	if (check_duplicate(data->a) == ERROR)
 	{
-		stack_delete(stack);
-		error_termination();
+		stack_delete(data->a);
+		error_termination(data);
 	}
-	stack_delete(stack);
+	stack_delete(data->a);
 }
