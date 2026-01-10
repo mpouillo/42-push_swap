@@ -1,12 +1,11 @@
 #include "../tests/tests.h"
 
-void	test_disorder(int argc, char **argv)
+void	test_disorder(t_pushswap *data)
 {
-	t_stack	*stack;
 	int		disorder;
 
-	stack = stack_create(argv + 1, argc - 1);
-	disorder = compute_disorder(*stack);
+	stack_init_a(data);
+	disorder = compute_disorder(*data->a);
 	ft_printf("Disorder = %i.%.2i\n", disorder / 1000, disorder % 1000 / 10);
-	stack_delete(stack);
+	stack_delete(data->a);
 }

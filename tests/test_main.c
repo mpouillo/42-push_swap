@@ -4,6 +4,10 @@
 #define PUSHSWAP	0
 #define VERBOSE		1
 
+int g_malloc_fail_counter = 0;
+int g_malloc_fail_target = 0;
+int g_malloc_fail_active = 0;
+
 static void	run_silent(t_pushswap *data, void (*algorithm)(t_pushswap *))
 {
 	int		original_stdout;
@@ -31,55 +35,59 @@ static void	run_verbose(t_pushswap *data, void (*algorithm)(t_pushswap *))
 	ft_printf("Total operations: %i\n", data->total_ops);
 }
 
-static void	test_algorithm(int argc, char **argv, int flag, void (*algorithm)(t_pushswap*))
+static void	test_algorithm(t_pushswap *data, int flag, void (*algorithm)(t_pushswap*))
 {
-	t_pushswap *data;
-
-	data = (t_pushswap *) ft_calloc(1, sizeof(t_pushswap));
-	data->a = stack_create(argv + 1, argc - 1);
-	data->b = stack_create(NULL, 0);
+	stack_init_a(data);
+	stack_init_b(data);
 	if (flag == VERBOSE)
 		run_verbose(data, algorithm);
 	else if (flag == SILENT)
 		run_silent(data, algorithm);
 	else
 		algorithm(data);
-	delete_data(data);
 }
 
 int main(int argc, char **argv)
 {
-	int	flag;
+	int			flag;
+	t_pushswap	*data;
 
 	if (argc < 2)
 		return (1);
 
-	if (ft_strncmp(argv[1], "-d", ft_strlen("-d")) == 0)
+	data = (t_pushswap *) ft_calloc(1, sizeof(t_pushswap));
+	data->argc = --argc;
+	data->argv = ++argv;
+
+	if (ft_strncmp(*argv, "-d", 3) == 0)
 	{
-		test_disorder(argc, argv);
+		test_disorder(data);
+		delete_data(data);
 		return (0);
 	}
-	else if (ft_strncmp(argv[1], "-v", ft_strlen("-v")) == 0)
+
+	if (ft_strncmp(*argv, "-v", 3) == 0)
 	{
 		flag = VERBOSE;
-		argc -= 1;
-		argv += 1;
+		data->argc--;
+		data->argv++;
 	}
-	else if (ft_strncmp(argv[1], "-s", ft_strlen("-s")) == 0)
+	else if (ft_strncmp(*argv, "-s", 3) == 0)
 	{
 		flag = SILENT;
-		argc -= 1;
-		argv += 1;
+		data->argc--;
+		data->argv++;
 	}
 	else
 		flag = PUSHSWAP;
 
-	if (ft_strncmp(argv[1], "insertion", ft_strlen("insertion")) == 0)
-		test_algorithm(argc - 1, argv + 1, flag, insertion_sort);
-	else if (ft_strncmp(argv[1], "selection", ft_strlen("selection")) == 0)
-		test_algorithm(argc - 1, argv + 1, flag, selection_sort);
-	else if (ft_strncmp(argv[1], "bubble", ft_strlen("bubble")) == 0)
-		test_algorithm(argc - 1, argv + 1, flag, bubble_sort);
+	if (ft_strncmp(*data->argv, "insertion", ft_strlen("insertion")) == 0)
+		test_algorithm(data, flag, insertion_sort);
+	else if (ft_strncmp(*data->argv, "selection", ft_strlen("selection")) == 0)
+		test_algorithm(data, flag, selection_sort);
+	else if (ft_strncmp(*data->argv, "bubble", ft_strlen("bubble")) == 0)
+		test_algorithm(data, flag, bubble_sort);
 
+	delete_data(data);
 	return (0);
 }

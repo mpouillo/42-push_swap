@@ -8,6 +8,6 @@
 
 void	print_stack(t_stack *stack);
 void	test_stack(t_stack *stack);
-void	test_disorder(int argc, char **argv);
+void	test_disorder(t_pushswap *data);
 
 #endif
