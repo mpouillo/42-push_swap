@@ -6,27 +6,49 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 13:19:20 by mpouillo          #+#    #+#             */
-/*   Updated: 2026/01/10 12:36:26 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/11 08:10:02 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
+int	int_validation(const char *nptr)
+{
+	size_t	i;
+	long	res;
+	int		sign;
+
+	res = 0;
+	sign = 1;
+	i = 0;
+	while (nptr[i] && ft_strchr("\f\n\r\t\v ", nptr[i]))
+		i++;
+	if (nptr[i] == '-')
+	{
+		sign = -1;
+		i++;
+	}
+	while (nptr[i])
+	{
+		if (!ft_isdigit(nptr[i]))
+			return (ERROR);
+		res = (res * 10) + nptr[i] - '0';
+		if (res * sign > INT_MAX || res * sign < INT_MIN)
+			return (ERROR);
+		i++;
+	}
+	return (SUCCESS);
+}
+
 static int	check_digits(char **args)
 {
 	int	i;
-	int	j;
 
 	i = 0;
 	while (args[i])
 	{
-		j = 0;
-		while (args[i][j])
-		{
-			if (!ft_isdigit(args[i][j]))
-				return (ERROR);
-			j++;
-		}
+		if (int_validation(args[i]) == ERROR)
+			return (ERROR);
 		i++;
 	}
 	return (SUCCESS);
