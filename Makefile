@@ -29,7 +29,8 @@ SRCS :=			benchmark_utils.c \
 				selection_sort.c \
 				stack_operations.c \
 				stack_utils.c \
-				validate_args.c
+				validate_args.c \
+				chunk_based_sort.c
 
 SRCS_PATH		:= $(addprefix $(SRC_DIR)/,$(SRCS))
 OBJS			:= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS_PATH))
