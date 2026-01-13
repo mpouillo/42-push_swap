@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:20:19 by mpouillo          #+#    #+#             */
-/*   Updated: 2026/01/10 12:36:10 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/13 08:17:43 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	stack_delete(t_stack *stack)
 		tmp = NULL;
 	}
 	free(stack);
-	stack = NULL;
 }
 
 int	check_stack_sorted(t_stack *stack)

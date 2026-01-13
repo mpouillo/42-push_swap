@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 12:15:41 by mpouillo          #+#    #+#             */
-/*   Updated: 2026/01/10 12:54:19 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/13 07:49:01 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_pushswap
 	t_stack	*b;
 	int		argc;
 	char	**argv;
+	int		malloc;
 	int		bench_mode;
 	int		disorder;
 	int		strategy;
@@ -74,6 +75,9 @@ void	delete_data(t_pushswap *data);
 
 //		error_handling.c
 void	error_termination(t_pushswap *data);
+
+//		input_parsing.c
+void	parse_input(t_pushswap *data);
 
 //		insertion_sort.c
 void	insertion_sort(t_pushswap *data);
@@ -122,8 +126,5 @@ void	stack_init_a(t_pushswap *data);
 void	stack_init_b(t_pushswap *data);
 void	stack_delete(t_stack *stack);
 int		check_stack_sorted(t_stack *stack);
-
-//		validate_args.c
-void	validate_args(t_pushswap *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 09:44:21 by mpouillo          #+#    #+#             */
-/*   Updated: 2026/01/10 12:51:32 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/13 08:29:11 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*get_strategy_string(t_pushswap *data)
 
 void	print_benchmark(t_pushswap *data)
 {
-	ft_dprintf(STDERR_FILENO, "[bench] disorder:  %.2i.%.2i%%\n",
+	ft_dprintf(STDERR_FILENO, "[bench] disorder:  %i.%.2i%%\n",
 		data->disorder / 10, data->disorder % 100);
 	ft_dprintf(STDERR_FILENO, "[bench] strategy:  %s / %s\n",
 		get_strategy_string(data), data->complexity);

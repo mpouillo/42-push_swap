@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_args.c                                    :+:      :+:    :+:   */
+/*   input_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 13:19:20 by mpouillo          #+#    #+#             */
-/*   Updated: 2026/01/11 08:10:02 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/13 08:16:33 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,31 +65,39 @@ static int	stack_find_item(t_node *node, int item)
 	return (ERROR);
 }
 
-static int	check_duplicate(t_stack *stack)
+static int	check_duplicate(t_pushswap *data)
 {
 	t_node	*node;
 
-	node = stack->head;
-	while (node)
-	{
-		if (stack_find_item(node->next, node->item) == SUCCESS)
-			return (ERROR);
-		node = node->next;
-	}
-	return (SUCCESS);
-}
-
-void	validate_args(t_pushswap *data)
-{
-	if (check_digits(data->argv) == ERROR)
-		error_termination(data);
 	stack_init_a(data);
 	if (!data->a)
 		error_termination(data);
-	if (check_duplicate(data->a) == ERROR)
+	node = data->a->head;
+	while (node)
 	{
-		stack_delete(data->a);
-		error_termination(data);
+		if (stack_find_item(node->next, node->item) == SUCCESS)
+		{
+			stack_delete(data->a);
+			data->a = NULL;
+			return (ERROR);
+		}
+		node = node->next;
 	}
 	stack_delete(data->a);
+	return (SUCCESS);
+}
+
+void	parse_input(t_pushswap *data)
+{
+	if (data->argc == 1)
+	{
+		data->argv = ft_split(*data->argv, ' ');
+		if (!data->argv)
+			error_termination(data);
+		data->malloc = 1;
+	}
+	if (check_digits(data->argv) == ERROR)
+		error_termination(data);
+	if (check_duplicate(data) == ERROR)
+		error_termination(data);
 }

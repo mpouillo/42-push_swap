@@ -18,6 +18,7 @@ SRCS :=			benchmark_utils.c \
 				compute_disorder.c \
 				data_handling.c \
 				error_handling.c \
+				input_parsing.c \
 				insertion_sort.c \
 				node_utils.c \
 				parsing_handling.c \
@@ -28,8 +29,7 @@ SRCS :=			benchmark_utils.c \
 				pushswap_operations_s.c \
 				selection_sort.c \
 				stack_operations.c \
-				stack_utils.c \
-				validate_args.c
+				stack_utils.c
 
 SRCS_PATH		:= $(addprefix $(SRC_DIR)/,$(SRCS))
 OBJS			:= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS_PATH))

@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 10:29:29 by mpouillo          #+#    #+#             */
-/*   Updated: 2026/01/10 12:34:32 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/11 14:03:29 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(int argc, char **argv)
 	data->argc = --argc;
 	data->argv = ++argv;
 	parse_flags(data);
-	validate_args(data);
+	parse_input(data);
 	run_pushswap(data);
 	delete_data(data);
 	return (0);
