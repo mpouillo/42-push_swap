@@ -96,6 +96,9 @@ void	butterfly_sort(t_pushswap *data)
 	range = ft_sqrt((int)data->a->length);
 	ft_printf("%d\n", range);
 	arr = create_sorted_array(data);
+	if (!arr)
+		return ;
 	butterfly_a_to_b(data, arr, range);
+	free(arr);
 	sort_b_to_a(data);
 }
