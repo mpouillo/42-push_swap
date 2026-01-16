@@ -82,6 +82,12 @@ void	parse_input(t_pushswap *data);
 //		insertion_sort.c
 void	insertion_sort(t_pushswap *data);
 
+//		butterfly_sort.c
+void	butterfly_sort(t_pushswap *data);
+//		butterfly_sort_utils.c
+int		*create_sorted_array(t_pushswap *data);
+int		ft_sqrt(int nb);
+
 //		node_utils.c
 t_node	*node_create(t_pushswap *data, int item);
 t_node	*node_get_last(t_node *node);

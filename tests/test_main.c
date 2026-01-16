@@ -87,6 +87,8 @@ int main(int argc, char **argv)
 		test_algorithm(data, flag, selection_sort);
 	else if (ft_strncmp(*data->argv, "bubble", ft_strlen("bubble")) == 0)
 		test_algorithm(data, flag, bubble_sort);
+	else if (ft_strncmp(*data->argv, "butterfly", ft_strlen("butterfly")) == 0)
+		test_algorithm(data, flag, butterfly_sort);
 
 	delete_data(data);
 	return (0);

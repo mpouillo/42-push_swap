@@ -35,7 +35,7 @@ void	print_stack(t_stack *stack)
 	cur = stack->head;
 	print_line(width);
 	if (!cur)
-		ft_printf("|%*s|\n", width, " EMPTY ");
+		ft_printf("| %*s |\n", width, " EMPTY ");
 	while (cur)
 	{
 		ft_printf("| %*i |\n", width, cur->item);
