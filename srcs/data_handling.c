@@ -35,6 +35,8 @@ void	delete_data(t_pushswap *data)
 	data->a = NULL;
 	stack_delete(data->b);
 	data->b = NULL;
+	free(data->array);
+	data->array = NULL;
 	if (data->malloc == 1)
 		free_array(data->argv);
 	free(data);

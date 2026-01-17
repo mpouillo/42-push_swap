@@ -36,24 +36,31 @@ static int	find_biggest(t_stack *stack)
 	return (j);
 }
 
-static void	butterfly_a_to_b(t_pushswap *data, const int arr[], int range)
+static void	butterfly_a_to_b(t_pushswap *data, int range)
 {
 	int	i;
 
 	i = 0;
 	while (data->a->length > 0)
 	{
-		if (data->a->head->item <= arr[i + range])
+		if (data->a->head->item <= data->array[i + range])
 		{
-			if (data->a->head->item <= arr[i])
+			if (data->a->head->item <= data->array[i])
 			{
 				pb(data);
-				rb(data);
+				if ((int)data->a->length > range)
+					i++;
+				if (data->a->head->item > data->array[i + range])
+					rr(data);
+				else
+					rb(data);
 			}
 			else
+			{
 				pb(data);
-			if ((int)data->a->length > range)
-				i++;
+				if ((int)data->a->length > range)
+					i++;
+			}
 		}
 		else
 			ra(data);
@@ -89,16 +96,14 @@ static void	sort_b_to_a(t_pushswap *data)
 
 void	butterfly_sort(t_pushswap *data)
 {
-	int	*arr;
 	int	range;
 
 	data->complexity = "O(n√n)";
 	range = ft_sqrt((int)data->a->length);
 	ft_printf("%d\n", range);
-	arr = create_sorted_array(data);
-	if (!arr)
-		return ;
-	butterfly_a_to_b(data, arr, range);
-	free(arr);
+	create_sorted_array(data);
+	if (!data->array)
+		error_termination(data);
+	butterfly_a_to_b(data, range);
 	sort_b_to_a(data);
 }

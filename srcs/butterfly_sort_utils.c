@@ -58,14 +58,11 @@ static void	insertion_sort_array(int arr[], int n)
 	}
 }
 
-int	*create_sorted_array(t_pushswap *data)
+void	create_sorted_array(t_pushswap *data)
 {
-	int	*arr;
-
-	arr = ft_calloc(data->a->length, sizeof(int));
-	if (!arr)
-		return (NULL);
-	fill_array(arr, data->a);
-	insertion_sort_array(arr, (int)data->a->length);
-	return (arr);
+	data->array = ft_calloc(data->a->length, sizeof(int));
+	if (!data->array)
+		error_termination(data);
+	fill_array(data->array, data->a);
+	insertion_sort_array(data->array, (int)data->a->length);
 }

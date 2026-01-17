@@ -40,6 +40,7 @@ typedef struct s_pushswap
 {
 	t_stack	*a;
 	t_stack	*b;
+	int		*array;
 	int		argc;
 	char	**argv;
 	int		malloc;
@@ -67,6 +68,13 @@ void	print_benchmark(t_pushswap *data);
 //		bubble_sort.c
 void	bubble_sort(t_pushswap *data);
 
+//		butterfly_sort.c
+void	butterfly_sort(t_pushswap *data);
+
+//		butterfly_sort_utils.c
+void	create_sorted_array(t_pushswap *data);
+int		ft_sqrt(int nb);
+
 //		compute_disorder.c
 int		compute_disorder(t_stack a);
 
@@ -81,12 +89,6 @@ void	parse_input(t_pushswap *data);
 
 //		insertion_sort.c
 void	insertion_sort(t_pushswap *data);
-
-//		butterfly_sort.c
-void	butterfly_sort(t_pushswap *data);
-//		butterfly_sort_utils.c
-int		*create_sorted_array(t_pushswap *data);
-int		ft_sqrt(int nb);
 
 //		node_utils.c
 t_node	*node_create(t_pushswap *data, int item);
