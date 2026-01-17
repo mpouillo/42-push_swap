@@ -12,15 +12,6 @@
 
 #include "../includes/push_swap.h"
 
-int	ft_sqrt(int nb)
-{
-	int	i;
-
-	i = 1;
-	while (i * i <= nb)
-		i++;
-	return (i - 1);
-}
 
 static void	fill_array(int arr[], t_stack *stack)
 {
@@ -60,6 +51,7 @@ static void	insertion_sort_array(int arr[], int n)
 
 void	create_sorted_array(t_pushswap *data)
 {
+	free(data->array);
 	data->array = ft_calloc(data->a->length, sizeof(int));
 	if (!data->array)
 		error_termination(data);

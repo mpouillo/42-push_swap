@@ -12,6 +12,16 @@
 
 #include "../includes/push_swap.h"
 
+int	ft_sqrt(int nb)
+{
+	int	i;
+
+	i = 1;
+	while (i * i <= nb)
+		i++;
+	return (i - 1);
+}
+
 static int	find_biggest(t_stack *stack)
 {
 	t_node	*biggest;
@@ -43,24 +53,21 @@ static void	butterfly_a_to_b(t_pushswap *data, int range)
 	i = 0;
 	while (data->a->length > 0)
 	{
-		if (data->a->head->item <= data->array[i + range])
+		if (data->a->head->item <= data->array[i])
 		{
-			if (data->a->head->item <= data->array[i])
-			{
-				pb(data);
-				if ((int)data->a->length > range)
-					i++;
-				if (data->a->head->item > data->array[i + range])
-					rr(data);
-				else
-					rb(data);
-			}
+			pb(data);
+			if ((int)data->a->length > range)
+				i++;
+			if (data->a->head->item > data->array[i + range])
+				rr(data);
 			else
-			{
-				pb(data);
-				if ((int)data->a->length > range)
-					i++;
-			}
+				rb(data);
+		}
+		else if (data->a->head->item <= data->array[i + range])
+		{
+			pb(data);
+			if ((int)data->a->length > range)
+				i++;
 		}
 		else
 			ra(data);
