@@ -13,7 +13,7 @@
 #include "../includes/push_swap.h"
 
 // Create a new node and set its value to item.
-t_node	*node_create(t_pushswap *data, int item)
+t_node	*node_create(t_pushswap *data, int item, size_t index)
 {
 	t_node	*node;
 
@@ -21,6 +21,7 @@ t_node	*node_create(t_pushswap *data, int item)
 	if (!node)
 		error_termination(data);
 	node->item = item;
+	node->index = index;
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);

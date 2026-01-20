@@ -12,30 +12,14 @@
 
 #include "../includes/push_swap.h"
 
-static int	find_biggest(t_stack *stack)
+static size_t	calculate_max_bits(t_pushswap *data)
 {
-	t_node	*current;
-	int		biggest;
-
-	biggest = stack->head->item;
-	current = stack->head;
-	while (current)
-	{
-		if (current->item > biggest)
-			biggest = current->item;
-		current = current->next;
-	}
-	return (biggest);
-}
-
-static size_t	calculate_max_bits(t_stack *stack)
-{
-	int		max_num;
+	size_t	max_index;
 	size_t	max_bits;
 
-	max_num = find_biggest(stack);
+	max_index = data->a->length - 1;
 	max_bits = 0;
-	while ((max_num >> max_bits) != 0)
+	while ((max_index >> max_bits) != 0)
 		max_bits++;
 	return (max_bits);
 }
@@ -70,16 +54,16 @@ static void	sort(t_pushswap *data)
 	size_t	j;	
 
 	length = data->a->length;
-	max_bits = calculate_max_bits(data->a);
+	max_bits = calculate_max_bits(data);
 	i = 0;
 	while (i < max_bits)
 	{
 		j = 0;
 		while (j < length)
 		{
-  	    	if (((data->a->head->item >> i) & 1) == 1)
+			if (((data->a->head->index >> i) & 1) == 1)
 				ra(data);
-		  	else
+			else
 				pb(data);
 			j++;
 		}
@@ -91,7 +75,7 @@ static void	sort(t_pushswap *data)
 
 void	radix_sort(t_pushswap *data)
 {
-	data->complexity = "O(n log n)";
+	data->complexity = "O(n log(n))";
 	create_sorted_array(data);
 	if (!data->array)
 		error_termination(data);

@@ -11,7 +11,7 @@ void	test_stack(t_stack *stack)
 
 	ft_printf("Adding test values (4, 3, 2, 1)...\n");
 	for (int i = 4; i > 0; i--)
-		stack_push(NULL, stack, i);
+		stack_push(NULL, stack, 0, i);
 	print_stack(stack);
 
 	ft_printf("Popping test values...\n");
@@ -21,7 +21,7 @@ void	test_stack(t_stack *stack)
 
 	ft_printf("Adding test values (4, 3, 2, 1)...\n");
 	for (int i = 4; i > 0; i--)
-		stack_push(NULL, stack, i);
+		stack_push(NULL, stack, 0, i);
 	print_stack(stack);
 
 	ft_printf("Rotating stack up by 1...\n");

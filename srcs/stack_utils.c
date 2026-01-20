@@ -26,7 +26,7 @@ void	stack_init_a(t_pushswap *data)
 	i = 0;
 	while (data->argv[i])
 	{
-		node = node_create(data, ft_atoi(data->argv[i]));
+		node = node_create(data, ft_atoi(data->argv[i]), 0);
 		node_add_back(&(data->a->head), node);
 		data->a->length += 1;
 		i++;

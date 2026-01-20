@@ -92,7 +92,7 @@ void	parse_input(t_pushswap *data);
 void	insertion_sort(t_pushswap *data);
 
 //		node_utils.c
-t_node	*node_create(t_pushswap *data, int item);
+t_node	*node_create(t_pushswap *data, int item, size_t index);
 t_node	*node_get_last(t_node *node);
 void	node_add_back(t_node **node, t_node *new);
 
@@ -128,7 +128,7 @@ void	selection_sort(t_pushswap *data);
 
 //		stack_operations.c
 int		stack_pop(t_stack *stack);
-void	stack_push(t_pushswap *data, t_stack *stack, int item);
+void	stack_push(t_pushswap *data, t_stack *stack, size_t index, int item);
 void	stack_swap(t_stack *stack);
 void	stack_rotate_up(t_stack *stack);
 void	stack_rotate_down(t_stack *stack);

@@ -19,7 +19,7 @@ void	pa(t_pushswap *data)
 {
 	if (!data->a || !data->b || data->b->length == 0)
 		return ;
-	stack_push(data, data->a, stack_pop(data->b));
+	stack_push(data, data->a, data->b->head->index, stack_pop(data->b));
 	data->pa_count += 1;
 	data->total_ops += 1;
 	ft_printf("pa\n");
@@ -32,7 +32,7 @@ void	pb(t_pushswap *data)
 {
 	if (!data->a || !data->b || data->a->length == 0)
 		return ;
-	stack_push(data, data->b, stack_pop(data->a));
+	stack_push(data, data->b, data->a->head->index, stack_pop(data->a));
 	data->pb_count += 1;
 	data->total_ops += 1;
 	ft_printf("pb\n");

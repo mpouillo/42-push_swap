@@ -31,11 +31,11 @@ int	stack_pop(t_stack *stack)
 }
 
 // Add an item to the top of the stack.
-void	stack_push(t_pushswap *data, t_stack *stack, int item)
+void	stack_push(t_pushswap *data, t_stack *stack, size_t index, int item)
 {
 	t_node	*node;
 
-	node = node_create(data, item);
+	node = node_create(data, item, index);
 	node->next = stack->head;
 	node->prev = NULL;
 	if (stack->head)
