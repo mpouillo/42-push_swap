@@ -91,6 +91,7 @@ static void	sort(t_pushswap *data)
 
 void	radix_sort(t_pushswap *data)
 {
+	data->complexity = "O(n log n)";
 	create_sorted_array(data);
 	if (!data->array)
 		error_termination(data);
