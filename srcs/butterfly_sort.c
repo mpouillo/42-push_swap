@@ -113,4 +113,6 @@ void	butterfly_sort(t_pushswap *data)
 		error_termination(data);
 	butterfly_a_to_b(data, range);
 	sort_b_to_a(data);
+	free(data->array);
+	data->array = NULL;
 }
