@@ -26,6 +26,7 @@
 typedef struct s_node
 {
 	int				item;
+	size_t			index;
 	struct s_node	*next;
 	struct s_node	*prev;
 }	t_node;
@@ -118,6 +119,9 @@ void	rrr(t_pushswap *data);
 void	sa(t_pushswap *data);
 void	sb(t_pushswap *data);
 void	ss(t_pushswap *data);
+
+//		radix_sort.c
+void	radix_sort(t_pushswap *data);
 
 //		selection_sort.c
 void	selection_sort(t_pushswap *data);

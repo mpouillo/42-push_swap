@@ -31,7 +31,8 @@ SRCS :=			benchmark_utils.c \
 				stack_operations.c \
 				stack_utils.c \
 				butterfly_sort.c \
-				butterfly_sort_utils.c
+				array_utils.c \
+				radix_sort.c
 
 SRCS_PATH		:= $(addprefix $(SRC_DIR)/,$(SRCS))
 OBJS			:= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS_PATH))
