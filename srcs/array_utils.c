@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   butterfly_sort_utils.c                             :+:      :+:    :+:   */
+/*   array_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chafonta <chafonta@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 14:19:55 by chafonta          #+#    #+#             */
-/*   Updated: 2026/01/16 14:19:56 by chafonta         ###   ########.fr       */
+/*   Updated: 2026/01/21 16:09:30 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-
-static void	fill_array(int arr[], t_stack *stack)
+static void	copy_stack_into_array(t_stack *stack, int *arr)
 {
 	t_node	*current;
 	size_t	i;
@@ -28,7 +27,7 @@ static void	fill_array(int arr[], t_stack *stack)
 	}
 }
 
-static void	insertion_sort_array(int arr[], int n)
+static void	insertion_sort_array(int *arr, int n)
 {
 	int	key;
 	int	i;
@@ -51,10 +50,9 @@ static void	insertion_sort_array(int arr[], int n)
 
 void	create_sorted_array(t_pushswap *data)
 {
-	free(data->array);
 	data->array = ft_calloc(data->a->length, sizeof(int));
 	if (!data->array)
 		error_termination(data);
-	fill_array(data->array, data->a);
-	insertion_sort_array(data->array, (int)data->a->length);
+	copy_stack_into_array(data->a, data->array);
+	insertion_sort_array(data->array, (int) data->a->length);
 }

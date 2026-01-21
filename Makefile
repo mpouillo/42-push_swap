@@ -17,10 +17,12 @@ B_OBJ_DIR		:= $(B_BUILD_DIR)/objs
 B_DEP_DIR		:= $(B_BUILD_DIR)/deps
 
 CC				:= cc
-CFLAGS			= -g -Wall -Werror -Wextra -I$(INCL_DIR)
+CFLAGS			= -Wall -Werror -Wextra -I$(INCL_DIR)
 
-SRCS :=			benchmark_utils.c \
+SRCS :=			array_utils.c \
+				benchmark_utils.c \
 				bubble_sort.c \
+				butterfly_sort.c \
 				compute_disorder.c \
 				data_handling.c \
 				error_handling.c \
@@ -33,13 +35,11 @@ SRCS :=			benchmark_utils.c \
 				pushswap_operations_r.c \
 				pushswap_operations_rr.c \
 				pushswap_operations_s.c \
+				radix_sort.c \
 				selection_sort.c \
-				stack_operations.c \
-				stack_utils.c \
 				sort_three.c \
-				butterfly_sort.c \
-				array_utils.c \
-				radix_sort.c
+				stack_operations.c \
+				stack_utils.c
 
 B_SRCS :=		checker.c \
 				get_next_line.c \

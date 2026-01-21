@@ -37,6 +37,8 @@ static void	run_verbose(t_pushswap *data, void (*algorithm)(t_pushswap *))
 
 static void	test_algorithm(t_pushswap *data, int flag, void (*algorithm)(t_pushswap*))
 {
+	data->argc--;
+	data->argv++;
 	stack_init_a(data);
 	stack_init_b(data);
 	if (flag == VERBOSE)

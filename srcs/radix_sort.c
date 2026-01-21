@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   radix_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 00:23:43 by marvin            #+#    #+#             */
-/*   Updated: 2026/01/20 00:23:43 by marvin           ###   ########.fr       */
+/*   Updated: 2026/01/21 16:48:15 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ static void	sort(t_pushswap *data)
 		j = 0;
 		while (j < length)
 		{
-			if (((data->a->head->index >> i) & 1) == 1)
+			if ((data->a->head->index >> i) & 1)
 				ra(data);
 			else
 				pb(data);
 			j++;
 		}
-	    while (data->b->length > 0)
+		while (data->b->length > 0)
 			pa(data);
 		i++;
 	}
@@ -75,10 +75,10 @@ static void	sort(t_pushswap *data)
 
 void	radix_sort(t_pushswap *data)
 {
-	data->complexity = "O(n log(n))";
+	data->complexity = "O(nlog(n))";
+	if (check_stack_sorted(data->a) == SUCCESS)
+		return ;
 	create_sorted_array(data);
-	if (!data->array)
-		error_termination(data);
 	index_stack(data);
 	sort(data);
 	free(data->array);
