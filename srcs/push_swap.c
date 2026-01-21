@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 10:29:29 by mpouillo          #+#    #+#             */
-/*   Updated: 2026/01/21 16:08:40 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/21 16:51:36 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static void	pick_algorithm_and_run(t_pushswap *data)
 		radix_sort(data);
 	else
 	{
-		if (data->disorder < 0.2)
+		if (data->disorder < 200)
 			selection_sort(data);
-		else if (data->disorder >= 0.2 && data->disorder <= 0.5)
+		else if (data->disorder < 500)
 			butterfly_sort(data);
 		else
 			radix_sort(data);
