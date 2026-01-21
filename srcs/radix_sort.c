@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 00:23:43 by marvin            #+#    #+#             */
-/*   Updated: 2026/01/21 16:09:17 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/21 16:48:15 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	sort(t_pushswap *data)
 		j = 0;
 		while (j < length)
 		{
-			if (((data->a->head->index >> i) & 1) == 1)
+			if ((data->a->head->index >> i) & 1)
 				ra(data);
 			else
 				pb(data);
@@ -75,10 +75,10 @@ static void	sort(t_pushswap *data)
 
 void	radix_sort(t_pushswap *data)
 {
-	data->complexity = "O(n log(n))";
+	data->complexity = "O(nlog(n))";
+	if (check_stack_sorted(data->a) == SUCCESS)
+		return ;
 	create_sorted_array(data);
-	if (!data->array)
-		error_termination(data);
 	index_stack(data);
 	sort(data);
 	free(data->array);
