@@ -20,7 +20,7 @@ void	insertion_sort(t_pushswap *data)
 	size_t	rotations;
 
 	data->complexity = "O(n²)";
-	if (check_stack_sorted(data->a))
+	if (check_stack_sorted(data->a) == SUCCESS)
 		return ;
 	while (data->a->length > 0)
 	{
