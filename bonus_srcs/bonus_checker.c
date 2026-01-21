@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   bonus_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chafonta <chafonta@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:03:11 by chafonta          #+#    #+#             */
-/*   Updated: 2026/01/21 10:03:17 by chafonta         ###   ########.fr       */
+/*   Updated: 2026/01/21 17:49:10 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes_bonus/checker.h"
+#include "../bonus_includes/bonus_checker.h"
 
 static void	parse_line(t_pushswap *data, char *line)
 {

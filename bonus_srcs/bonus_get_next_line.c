@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   bonus_get_next_line.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chafonta <chafonta@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 13:38:02 by chafonta          #+#    #+#             */
-/*   Updated: 2025/12/06 13:38:46 by chafonta         ###   ########.fr       */
+/*   Updated: 2026/01/21 17:49:31 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes_bonus/get_next_line.h"
+#include "../bonus_includes/bonus_get_next_line.h"
 
 static int	find_nl(char const *s)
 {

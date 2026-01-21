@@ -10,11 +10,11 @@ INCL_DIR		:= includes
 BUILD_DIR		:= .build
 OBJ_DIR			:= $(BUILD_DIR)/objs
 DEP_DIR			:= $(BUILD_DIR)/deps
-B_SRC_DIR		:= srcs_bonus
-B_INCL_DIR		:= includes_bonus
-B_BUILD_DIR		:= .build_bonus
-B_OBJ_DIR		:= $(B_BUILD_DIR)/objs
-B_DEP_DIR		:= $(B_BUILD_DIR)/deps
+
+B_SRC_DIR		:= bonus_srcs
+B_INCL_DIR		:= bonus_includes
+B_OBJ_DIR		:= $(BUILD_DIR)/bonus_objs
+B_DEP_DIR		:= $(BUILD_DIR)/bonus_deps
 
 CC				:= cc
 CFLAGS			= -Wall -Werror -Wextra -I$(INCL_DIR)
@@ -41,13 +41,13 @@ SRCS :=			array_utils.c \
 				stack_operations.c \
 				stack_utils.c
 
-B_SRCS :=		checker.c \
-				get_next_line.c \
-				get_next_line_utils.c \
-				silent_pushswap_operations_p.c \
-				silent_pushswap_operations_r.c \
-				silent_pushswap_operations_rr.c \
-				silent_pushswap_operations_s.c
+B_SRCS :=		bonus_checker.c \
+				bonus_get_next_line.c \
+				bonus_get_next_line_utils.c \
+				bonus_silent_pushswap_operations_p.c \
+				bonus_silent_pushswap_operations_r.c \
+				bonus_silent_pushswap_operations_rr.c \
+				bonus_silent_pushswap_operations_s.c
 
 SRCS_PATH		:= $(addprefix $(SRC_DIR)/,$(SRCS))
 OBJS			:= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS_PATH))
@@ -70,12 +70,18 @@ RESET			:= \033[0m
 
 all: libftprintf $(NAME)
 
+bonus: libftprintf $(B_NAME)
+
 libftprintf:
 	$(MAKE) -C $(LIBFTPRINTF_DIR) all
 
-debug:
-	@$(MAKE) CFLAGS+="-g" re
+debug: fclean
+	@$(MAKE) CFLAGS+="-g" all
 	gdb -tui ./$(NAME)
+
+b_debug: fclean
+	@$(MAKE) CFLAGS+="-g" all bonus
+	gdb -tui ./$(B_NAME)
 
 $(NAME): $(LIBFTPRINTF) $(OBJS)
 	@echo "$(YELLOW)LINKING...$(RESET)"
@@ -91,12 +97,6 @@ $(DEP_DIR):
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR) $(DEP_DIR)
 	@echo "$(YELLOW)COMPILING $(GREEN)$< $(YELLOW)⮞ $(GREEN)$@$(RESET)"
 	$(CC) $(CFLAGS) -o "$@" -c "$<" -MMD -MP -MF "$(DEP_DIR)/$(@F:.o=.d)"
-
-bonus: $(B_NAME)
-
-b_debug: fclean all
-	@$(MAKE) bonus
-	gdb -tui ./$(B_NAME)
 
 COMMON_OBJS := $(filter-out $(OBJ_DIR)/push_swap.o, $(OBJS))
 
@@ -129,4 +129,4 @@ re: fclean all
 
 -include $(DEPS)
 
-.PHONY: all clean fclean re libftprintf debug bonus
+.PHONY: all clean fclean re libftprintf debug b_debug bonus
