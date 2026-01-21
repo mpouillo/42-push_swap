@@ -14,9 +14,6 @@ SRC_FILES=$(find srcs/ -name "*.c" ! -name "push_swap.c")
 shuf -i 0-9999 -n $1 > args.txt
 shift;
 
-# make > /dev/null &&
-# cc -Wall -Werror -Wextra -g -o test.out $SRC_FILES tests/*.c -Llibftprintf -lftprintf &&
-# valgrind --leak-check=full --show-leak-kinds=all -s ./test.out $@ $(cat args.txt)
-
 make > /dev/null &&
-cc -Wall -Werror -Wextra -g -o test.out $SRC_FILES tests/*.c -Llibftprintf -lftprintf && ./test.out $@ $(cat args.txt)
+cc -Wall -Werror -Wextra -g -o test.out $SRC_FILES tests/*.c -Llibftprintf -lftprintf &&
+valgrind --leak-check=full --show-leak-kinds=all -s ./test.out $@ $(cat args.txt)
