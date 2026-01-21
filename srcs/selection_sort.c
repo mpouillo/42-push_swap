@@ -66,7 +66,7 @@ void	selection_sort(t_pushswap *data)
 	data->complexity = "O(n²)";
 	while (data->a->length > 0)
 	{
-		if (check_stack_sorted(data->a))
+		if (check_stack_sorted(data->a) == SUCCESS)
 			break ;
 		smallest = find_smallest(data->a);
 		if (shortest_path_direction(data->a, smallest) == CW)
