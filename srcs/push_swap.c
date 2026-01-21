@@ -14,19 +14,18 @@
 
 static void	pick_algorithm_and_run(t_pushswap *data)
 {
-  if (data->strategy == STRATEGY_SIMPLE)
-  	bubble_sort(data);											// to modify
-  else if (data->strategy == STRATEGY_MEDIUM)
-  	butterfly_sort(data);										// to modify
-  else if (data->strategy == STRATEGY_COMPLEX)
-  	selection_sort(data);										// to modify
-  else
-  	if (data->disorder < 0.2)
+	if (data->strategy == STRATEGY_SIMPLE)
+  		selection_sort(data);											// to modify
+	else if (data->strategy == STRATEGY_MEDIUM)
+  		butterfly_sort(data);										// to modify
+	else if (data->strategy == STRATEGY_COMPLEX)
+  		radix_sort(data);										// to modify
+	else if (data->disorder < 0.2)
   		selection_sort(data);									// to modify
-  	else if (data->disorder >= 0.2 && data->disorder <= 0.5)
-  		butterfly_sort(data);									// to modify
-  	else
-  		butterfly_sort(data);									// to modify
+	else if (data->disorder >= 0.2 && data->disorder <= 0.5)
+  	 	butterfly_sort(data);									// to modify
+	else
+   		radix_sort(data);									// to modify
 }
 
 static void	run_pushswap(t_pushswap *data)

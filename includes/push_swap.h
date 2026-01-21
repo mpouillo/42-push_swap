@@ -126,6 +126,9 @@ void	radix_sort(t_pushswap *data);
 //		selection_sort.c
 void	selection_sort(t_pushswap *data);
 
+//		sort_three.c
+void	sort_three(t_pushswap *data);
+
 //		stack_operations.c
 int		stack_pop(t_stack *stack);
 void	stack_push(t_pushswap *data, t_stack *stack, size_t index, int item);

@@ -36,6 +36,7 @@ SRCS :=			benchmark_utils.c \
 				selection_sort.c \
 				stack_operations.c \
 				stack_utils.c \
+				sort_three.c \
 				butterfly_sort.c \
 				array_utils.c \
 				radix_sort.c
