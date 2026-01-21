@@ -6,12 +6,11 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 14:19:55 by chafonta          #+#    #+#             */
-/*   Updated: 2026/01/21 14:37:33 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/21 16:09:30 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
 
 static void	copy_stack_into_array(t_stack *stack, int *arr)
 {

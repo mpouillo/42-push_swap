@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 10:29:29 by mpouillo          #+#    #+#             */
-/*   Updated: 2026/01/21 11:56:57 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/21 16:08:40 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,21 @@
 
 static void	pick_algorithm_and_run(t_pushswap *data)
 {
-  if (data->strategy == STRATEGY_SIMPLE)
-  	selection_sort(data);											// to modify
-  else if (data->strategy == STRATEGY_MEDIUM)
-  	butterfly_sort(data);										// to modify
-  else if (data->strategy == STRATEGY_COMPLEX)
-  	selection_sort(data);										// to modify
-  else
-  	if (data->disorder < 0.2)
-  		selection_sort(data);									// to modify
-  	else if (data->disorder >= 0.2 && data->disorder <= 0.5)
-  		butterfly_sort(data);									// to modify
-  	else
-  		butterfly_sort(data);									// to modify
+	if (data->strategy == STRATEGY_SIMPLE)
+		selection_sort(data);
+	else if (data->strategy == STRATEGY_MEDIUM)
+		butterfly_sort(data);
+	else if (data->strategy == STRATEGY_COMPLEX)
+		radix_sort(data);
+	else
+	{
+		if (data->disorder < 0.2)
+			selection_sort(data);
+		else if (data->disorder >= 0.2 && data->disorder <= 0.5)
+			butterfly_sort(data);
+		else
+			radix_sort(data);
+	}
 }
 
 static void	run_pushswap(t_pushswap *data)

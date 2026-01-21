@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   radix_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 00:23:43 by marvin            #+#    #+#             */
-/*   Updated: 2026/01/20 00:23:43 by marvin           ###   ########.fr       */
+/*   Updated: 2026/01/21 16:09:17 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	sort(t_pushswap *data)
 				pb(data);
 			j++;
 		}
-	    while (data->b->length > 0)
+		while (data->b->length > 0)
 			pa(data);
 		i++;
 	}
