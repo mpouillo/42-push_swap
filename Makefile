@@ -17,7 +17,7 @@ B_OBJ_DIR		:= $(B_BUILD_DIR)/objs
 B_DEP_DIR		:= $(B_BUILD_DIR)/deps
 
 CC				:= cc
-CFLAGS			= -g -Wall -Werror -Wextra -I$(INCL_DIR)
+CFLAGS			= -Wall -Werror -Wextra -I$(INCL_DIR)
 
 SRCS :=			array_utils.c \
 				benchmark_utils.c \
@@ -37,6 +37,7 @@ SRCS :=			array_utils.c \
 				pushswap_operations_s.c \
 				radix_sort.c \
 				selection_sort.c \
+				sort_three.c \
 				stack_operations.c \
 				stack_utils.c
 
