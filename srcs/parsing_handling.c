@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 09:41:44 by mpouillo          #+#    #+#             */
-/*   Updated: 2026/01/13 08:34:23 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/22 12:43:14 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,18 @@ void	parse_flags(t_pushswap *data)
 	int	i;
 
 	i = 0;
-	data->strategy = STRATEGY_ADAPTIVE;
-	data->bench_mode = 0;
-	while (i < data->argc && i < 2)
+	while (ft_strncmp(data->argv[i], "--", 2) == 0)
 	{
+		if (ft_strncmp(data->argv[i], "--bench", 8) == 0)
+		{
+			if (data->bench_mode)
+				error_termination(data);
+			data->bench_mode = 1;
+			data->argv++;
+			data->argc--;
+		}
+		else if (data->strategy)
+			error_termination(data);
 		if (ft_strncmp(data->argv[i], "--simple", 9) == 0)
 			apply_strategy(data, STRATEGY_SIMPLE);
 		else if (ft_strncmp(data->argv[i], "--medium", 9) == 0)
@@ -39,13 +47,6 @@ void	parse_flags(t_pushswap *data)
 			apply_strategy(data, STRATEGY_COMPLEX);
 		else if (ft_strncmp(data->argv[i], "--adaptive", 11) == 0)
 			apply_strategy(data, STRATEGY_ADAPTIVE);
-		else if (ft_strncmp(data->argv[i], "--bench", 8) == 0)
-		{
-			data->bench_mode = 1;
-			data->argv++;
-			data->argc--;
-		}
-		else
-			i++;
+		i++;
 	}
 }
