@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_get_next_line_utils.c                        :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 13:39:10 by chafonta          #+#    #+#             */
-/*   Updated: 2026/01/21 17:49:28 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/22 12:47:07 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../bonus_includes/bonus_checker.h"
+#include "../includes_bonus/checker_bonus.h"
 
 char	*put_error(char **s1, char **s2)
 {

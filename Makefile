@@ -11,10 +11,10 @@ BUILD_DIR		:= .build
 OBJ_DIR			:= $(BUILD_DIR)/objs
 DEP_DIR			:= $(BUILD_DIR)/deps
 
-B_SRC_DIR		:= bonus_srcs
-B_INCL_DIR		:= bonus_includes
-B_OBJ_DIR		:= $(BUILD_DIR)/bonus_objs
-B_DEP_DIR		:= $(BUILD_DIR)/bonus_deps
+B_SRC_DIR		:= srcs_bonus
+B_INCL_DIR		:= includes_bonus
+B_OBJ_DIR		:= $(BUILD_DIR)/objs_bonus
+B_DEP_DIR		:= $(BUILD_DIR)/deps_bonus
 
 CC				:= cc
 CFLAGS			= -Wall -Werror -Wextra -I$(INCL_DIR)
@@ -41,13 +41,13 @@ SRCS :=			array_utils.c \
 				stack_operations.c \
 				stack_utils.c
 
-B_SRCS :=		bonus_checker.c \
-				bonus_get_next_line.c \
-				bonus_get_next_line_utils.c \
-				bonus_silent_pushswap_operations_p.c \
-				bonus_silent_pushswap_operations_r.c \
-				bonus_silent_pushswap_operations_rr.c \
-				bonus_silent_pushswap_operations_s.c
+B_SRCS :=		checker_bonus.c \
+				get_next_line_bonus.c \
+				get_next_line_utils_bonus.c \
+				silent_pushswap_operations_p_bonus.c \
+				silent_pushswap_operations_r_bonus.c \
+				silent_pushswap_operations_rr_bonus.c \
+				silent_pushswap_operations_s_bonus.c
 
 SRCS_PATH		:= $(addprefix $(SRC_DIR)/,$(SRCS))
 OBJS			:= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS_PATH))
@@ -83,6 +83,8 @@ b_debug: fclean
 	@$(MAKE) CFLAGS+="-g" all bonus
 	gdb -tui ./$(B_NAME)
 
+
+#	PUSH_SWAP COMPILATION
 $(NAME): $(LIBFTPRINTF) $(OBJS)
 	@echo "$(YELLOW)LINKING...$(RESET)"
 	$(CC) $(CFLAGS) -o $(NAME) -L$(LIBFTPRINTF_DIR) $(OBJS) -lftprintf
@@ -98,10 +100,11 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR) $(DEP_DIR)
 	@echo "$(YELLOW)COMPILING $(GREEN)$< $(YELLOW)⮞ $(GREEN)$@$(RESET)"
 	$(CC) $(CFLAGS) -o "$@" -c "$<" -MMD -MP -MF "$(DEP_DIR)/$(@F:.o=.d)"
 
+#	CHECKER COMPILATION
 COMMON_OBJS := $(filter-out $(OBJ_DIR)/push_swap.o, $(OBJS))
 
 $(B_NAME): $(LIBFTPRINTF) $(COMMON_OBJS) $(B_OBJS)
-	@echo "$(YELLOW)LINKING $(B_NAME)...$(RESET)"
+	@echo "$(YELLOW)LINKING...$(RESET)"
 	$(CC) $(CFLAGS) -o $(B_NAME) $(COMMON_OBJS) $(B_OBJS) -L$(LIBFTPRINTF_DIR) -lftprintf
 	@echo "$(GREEN)DONE! $(CYAN)CHECKER$(GREEN) IS READY.$(RESET)"
 
@@ -112,16 +115,17 @@ $(B_DEP_DIR):
 	mkdir -p $(B_DEP_DIR)
 
 $(B_OBJ_DIR)/%.o: $(B_SRC_DIR)/%.c | $(B_OBJ_DIR) $(B_DEP_DIR)
-	@echo "$(YELLOW)COMPILING BONUS $(GREEN)$< $(YELLOW)⮞ $(GREEN)$@$(RESET)"
+	@echo "$(YELLOW)COMPILING $(GREEN)$< $(YELLOW)⮞ $(GREEN)$@$(RESET)"
 	$(CC) $(CFLAGS) -o "$@" -c "$<" -MMD -MP -MF "$(B_DEP_DIR)/$(@F:.o=.d)"
 
+#	CLEANUP
 clean:
-	@echo "$(RED)CLEANING PUSH_SWAP AND CHECKER BUILD DIRECTORIES...$(RESET)"
-	$(RM) -r $(BUILD_DIR) $(B_BUILD_DIR)
+	@echo "$(RED)CLEANING BUILD DIRECTORIES...$(RESET)"
+	$(RM) -r $(BUILD_DIR)
 	$(MAKE) -C $(LIBFTPRINTF_DIR) clean
 
 fclean: clean
-	@echo "$(RED)CLEANING ARCHIVE FILE...$(RESET)"
+	@echo "$(RED)CLEANING ARCHIVE FILES...$(RESET)"
 	$(RM) $(NAME) $(B_NAME)
 	$(MAKE) -C $(LIBFTPRINTF_DIR) fclean
 

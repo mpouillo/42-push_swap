@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_checker.h                                    :+:      :+:    :+:   */
+/*   checker_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:47:46 by chafonta          #+#    #+#             */
-/*   Updated: 2026/01/21 17:54:41 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/22 12:47:19 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define BONUS_CHECKER_H
 
 # include "../includes/push_swap.h"
-# include "bonus_get_next_line.h"
+# include "get_next_line_bonus.h"
 
 //		pushswap_operations_p.c
 void	s_pa(t_pushswap *data);
