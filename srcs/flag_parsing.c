@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_handling.c                                 :+:      :+:    :+:   */
+/*   flag_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 09:41:44 by mpouillo          #+#    #+#             */
-/*   Updated: 2026/01/22 12:43:14 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/22 16:01:25 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	parse_flags(t_pushswap *data)
 	int	i;
 
 	i = 0;
-	while (ft_strncmp(data->argv[i], "--", 2) == 0)
+	while (data->argv[i] && (ft_strncmp(data->argv[i], "--", 2) == 0))
 	{
 		if (ft_strncmp(data->argv[i], "--bench", 8) == 0)
 		{

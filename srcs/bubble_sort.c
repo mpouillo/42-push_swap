@@ -21,6 +21,8 @@ void	bubble_sort(t_pushswap *data)
 	size_t	j;
 
 	data->complexity = "O(n²)";
+	if (check_stack_sorted(data->a) == SUCCESS)
+		return ;
 	i = 0;
 	while (data->a->length > 2 && i < data->a->length)
 	{

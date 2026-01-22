@@ -26,10 +26,10 @@ SRCS :=			array_utils.c \
 				compute_disorder.c \
 				data_handling.c \
 				error_handling.c \
+				flag_parsing.c \
 				input_parsing.c \
 				insertion_sort.c \
 				node_utils.c \
-				parsing_handling.c \
 				push_swap.c \
 				pushswap_operations_p.c \
 				pushswap_operations_r.c \

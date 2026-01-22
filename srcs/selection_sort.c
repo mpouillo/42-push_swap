@@ -64,6 +64,8 @@ void	selection_sort(t_pushswap *data)
 	t_node	*smallest;
 
 	data->complexity = "O(n²)";
+	if (check_stack_sorted(data->a) == SUCCESS)
+		return ;
 	while (data->a->length > 3)
 	{
 		if (check_stack_sorted(data->a) == SUCCESS)

@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 13:19:20 by mpouillo          #+#    #+#             */
-/*   Updated: 2026/01/13 08:16:33 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/22 16:01:09 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	int_validation(const char *nptr)
 	if (nptr[i] == '-')
 	{
 		sign = -1;
-		i++;
+		if (!nptr[++i])
+			return (ERROR);
 	}
 	while (nptr[i])
 	{
