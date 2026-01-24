@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 13:38:02 by chafonta          #+#    #+#             */
-/*   Updated: 2026/01/22 12:46:57 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/24 08:06:05 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	find_nl(char const *s)
 	return (-1);
 }
 
-char	*extract_line_update_stash(char **stash, char *line, char *src)
+static char	*extract_line_update_stash(char **stash, char *line, char *src)
 {
 	int		nl;
 	char	*temp_stash;
@@ -51,7 +51,7 @@ char	*extract_line_update_stash(char **stash, char *line, char *src)
 	return (line);
 }
 
-char	*read_and_fill(int fd, char *line, char **stash)
+static char	*read_and_fill(int fd, char *line, char **stash)
 {
 	static char	buf[BUFFER_SIZE + 1] = {0};
 	ssize_t		bytes_read;

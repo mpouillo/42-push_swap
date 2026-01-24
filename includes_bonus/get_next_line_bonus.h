@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 03:12:19 by chafonta          #+#    #+#             */
-/*   Updated: 2026/01/22 16:01:39 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/24 08:06:54 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-int		ft_strlen_gnl(const char *str);
+//		get_next_line_bonus.c
 char	*get_next_line(int fd);
+
+//		get_next_line_utils_bonus.c
+int		ft_strlen_gnl(const char *str);
 char	*put_error(char **s1, char **s2);
 char	*ft_strldup(const char *s, int l);
 char	*ft_strljoin(char *dest, char const *src, int l);

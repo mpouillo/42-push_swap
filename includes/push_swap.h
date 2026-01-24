@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 12:15:41 by mpouillo          #+#    #+#             */
-/*   Updated: 2026/01/13 07:49:01 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/24 08:03:45 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ typedef struct s_pushswap
 	size_t	rrr_count;
 }	t_pushswap;
 
+//		array_utils.c
+void	create_sorted_array(t_pushswap *data);
+
 //		benchmark_utils.c
 void	print_benchmark(t_pushswap *data);
 
@@ -72,10 +75,6 @@ void	bubble_sort(t_pushswap *data);
 //		butterfly_sort.c
 void	butterfly_sort(t_pushswap *data);
 
-//		butterfly_sort_utils.c
-void	create_sorted_array(t_pushswap *data);
-int		ft_sqrt(int nb);
-
 //		compute_disorder.c
 int		compute_disorder(t_stack a);
 
@@ -84,6 +83,9 @@ void	delete_data(t_pushswap *data);
 
 //		error_handling.c
 void	error_termination(t_pushswap *data);
+
+//		flag_parsing.c
+void	parse_flags(t_pushswap *data);
 
 //		input_parsing.c
 void	parse_input(t_pushswap *data);
@@ -95,9 +97,6 @@ void	insertion_sort(t_pushswap *data);
 t_node	*node_create(t_pushswap *data, int item, size_t index);
 t_node	*node_get_last(t_node *node);
 void	node_add_back(t_node **node, t_node *new);
-
-//		parsing_handling.c
-void	parse_flags(t_pushswap *data);
 
 //		push_swap.c
 

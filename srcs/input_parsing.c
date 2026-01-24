@@ -6,13 +6,13 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 13:19:20 by mpouillo          #+#    #+#             */
-/*   Updated: 2026/01/22 16:01:09 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/24 08:11:55 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	int_validation(const char *nptr)
+static int	int_validation(const char *nptr)
 {
 	size_t	i;
 	long	res;

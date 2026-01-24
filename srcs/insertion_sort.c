@@ -12,9 +12,6 @@
 
 #include "../includes/push_swap.h"
 
-#define CW	1
-#define CCW	-1
-
 void	insertion_sort(t_pushswap *data)
 {
 	size_t	rotations;
