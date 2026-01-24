@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 00:23:43 by marvin            #+#    #+#             */
-/*   Updated: 2026/01/21 16:48:15 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/24 09:38:30 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,11 @@ void	radix_sort(t_pushswap *data)
 	data->complexity = "O(nlog(n))";
 	if (check_stack_sorted(data->a) == SUCCESS)
 		return ;
+	if (data->a->length <= 5)
+	{
+		selection_sort(data);
+		return ;
+	}
 	create_sorted_array(data);
 	index_stack(data);
 	sort(data);

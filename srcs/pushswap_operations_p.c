@@ -22,7 +22,8 @@ void	pa(t_pushswap *data)
 	stack_push(data, data->a, data->b->head->index, stack_pop(data->b));
 	data->pa_count += 1;
 	data->total_ops += 1;
-	ft_printf("pa\n");
+	if (!data->silent_mode)
+		ft_printf("pa\n");
 }
 
 // pb (push b): Take the first element at
@@ -35,5 +36,6 @@ void	pb(t_pushswap *data)
 	stack_push(data, data->b, data->a->head->index, stack_pop(data->a));
 	data->pb_count += 1;
 	data->total_ops += 1;
-	ft_printf("pb\n");
+	if (!data->silent_mode)
+		ft_printf("pb\n");
 }

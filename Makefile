@@ -43,11 +43,7 @@ SRCS :=			array_utils.c \
 
 B_SRCS :=		checker_bonus.c \
 				get_next_line_bonus.c \
-				get_next_line_utils_bonus.c \
-				silent_pushswap_operations_p_bonus.c \
-				silent_pushswap_operations_r_bonus.c \
-				silent_pushswap_operations_rr_bonus.c \
-				silent_pushswap_operations_s_bonus.c
+				get_next_line_utils_bonus.c
 
 SRCS_PATH		:= $(addprefix $(SRC_DIR)/,$(SRCS))
 OBJS			:= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS_PATH))

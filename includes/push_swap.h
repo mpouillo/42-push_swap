@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 12:15:41 by mpouillo          #+#    #+#             */
-/*   Updated: 2026/01/24 08:03:45 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/24 09:58:35 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_pushswap
 	char	**argv;
 	int		malloc;
 	int		bench_mode;
+	int		silent_mode;
 	int		disorder;
 	int		strategy;
 	char	*complexity;

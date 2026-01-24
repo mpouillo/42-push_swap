@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 09:41:44 by mpouillo          #+#    #+#             */
-/*   Updated: 2026/01/24 09:29:59 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/24 09:56:55 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,15 @@ static void	apply_strategy(t_pushswap *data, int strategy)
 	data->argv += 1;
 }
 
+static void apply_bench_mode(t_pushswap *data)
+{
+	if (data->bench_mode)
+		error_termination(data);
+	data->bench_mode = 1;
+	data->argv++;
+	data->argc--;
+}
+
 // Iterate as long as data->argv starts with "--".
 // Exits with an error if duplicate flags are found.
 void	parse_flags(t_pushswap *data)
@@ -30,13 +39,7 @@ void	parse_flags(t_pushswap *data)
 	while (data->argv[i] && (ft_strncmp(data->argv[i], "--", 2) == 0))
 	{
 		if (ft_strncmp(data->argv[i], "--bench", 8) == 0)
-		{
-			if (data->bench_mode)
-				error_termination(data);
-			data->bench_mode = 1;
-			data->argv++;
-			data->argc--;
-		}
+			apply_bench_mode(data);
 		else if (data->strategy)
 			error_termination(data);
 		else if (ft_strncmp(data->argv[i], "--simple", 9) == 0)

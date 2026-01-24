@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:03:11 by chafonta          #+#    #+#             */
-/*   Updated: 2026/01/22 16:01:53 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/24 10:21:49 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,27 @@
 static void	parse_line(t_pushswap *data, char *line)
 {
 	if (ft_strncmp(line, "pa\n", 3) == 0)
-		s_pa(data);
+		pa(data);
 	else if (ft_strncmp(line, "pb\n", 3) == 0)
-		s_pb(data);
+		pb(data);
 	else if (ft_strncmp(line, "ra\n", 3) == 0)
-		s_ra(data);
+		ra(data);
 	else if (ft_strncmp(line, "rb\n", 3) == 0)
-		s_rb(data);
+		rb(data);
 	else if (ft_strncmp(line, "rr\n", 3) == 0)
-		s_rr(data);
+		rr(data);
 	else if (ft_strncmp(line, "rra\n", 4) == 0)
-		s_rra(data);
+		rra(data);
 	else if (ft_strncmp(line, "rrb\n", 4) == 0)
-		s_rrb(data);
+		rrb(data);
 	else if (ft_strncmp(line, "rrr\n", 4) == 0)
-		s_rrr(data);
+		rrr(data);
 	else if (ft_strncmp(line, "sa\n", 3) == 0)
-		s_sa(data);
+		sa(data);
 	else if (ft_strncmp(line, "sb\n", 3) == 0)
-		s_sb(data);
+		sb(data);
 	else if (ft_strncmp(line, "ss\n", 3) == 0)
-		s_ss(data);
+		ss(data);
 	else
 		error_termination(data);
 }
@@ -51,8 +51,6 @@ static void	run_checker(t_pushswap *data)
 	if (!data->b)
 		error_termination(data);
 	line = get_next_line(STDIN_FILENO);
-	if (!line)
-		error_termination(data);
 	while (line)
 	{
 		parse_line(data, line);
@@ -72,10 +70,11 @@ int	main(int argc, char **argv)
 		error_termination(NULL);
 	data->argc = --argc;
 	data->argv = ++argv;
+	data->silent_mode = 1;
 	parse_flags(data);
 	parse_input(data);
 	run_checker(data);
-	if (check_stack_sorted(data->a))
+	if (check_stack_sorted(data->a) == SUCCESS)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");

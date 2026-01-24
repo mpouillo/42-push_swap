@@ -56,7 +56,8 @@ stack).
 - `--simple`: Selection sort
 	- A simple O(n²) sorting algorithm.
 	- The goal is to keep looking for the smallest element in stack `a`, and push it to stack `b` until stack `a` is empty. The contents of stack `b` are then pushed back into stack `a`, resulting in a sorted state.
-	- We picked this algorithm over other O(n²) sorting algorithms like bubble sort or insertion sort because it could be easily optimized by calculating the direction in which to rotate the stack, minimizing the effective number of push_swap operations.
+	- Optimizations were made by finding the shortest path to the smallest element (i.e., picking whether to rotate with `ra` or `rra`) and checking if the stack is sorted at every step.
+	- We picked this algorithm over other O(n²) sorting algorithms like bubble sort or insertion sort because it showed the best results after optimizations, getting about half and a quarter of the operations of insertion and bubble sort respectively.
 - `--medium`: Butterfly algorithm
 	- A fairly optimized O(n√n) sorting algorithm.
 	- **TODO**: how it works
@@ -115,8 +116,14 @@ $> shuf -i 0-9999 -n 500 > args.txt | ./push_swap $(cat args.txt) | ./checker $(
 
 [<img src="https://contrib.rocks/image?repo=mpouillo/42-push_swap">](https://github.com/mpouillo/42-push_swap/graphs/contributors)
 
-- **mpouillo**: main framework, simple algorithm (selection sort)
-- **chafonta**: medium (butterfly) and complex (TODO) algorothms, checker
+- **mpouillo**:
+	- main framework: main, parsing, basic program behavior, makefile, header files, bench mode, etc.
+	- simple algorithms: selection sort, insertion sort, bubble sort
+- **chafonta**:
+	- disorder computing function
+	- medium algorithm: butterfly sort
+	- complex algorithm: radix sort
+	- checker
 
 ### Resources:
 

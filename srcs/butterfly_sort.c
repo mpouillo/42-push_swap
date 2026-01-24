@@ -108,6 +108,11 @@ void	butterfly_sort(t_pushswap *data)
 	data->complexity = "O(n√n)";
 	if (check_stack_sorted(data->a) == SUCCESS)
 		return ;
+	if (data->a->length <= 5)
+	{
+		selection_sort(data);
+		return ;
+	}
 	range = ft_sqrt((int)data->a->length);
 	create_sorted_array(data);
 	butterfly_a_to_b(data, range);
