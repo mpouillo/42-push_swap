@@ -6,13 +6,13 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 09:41:44 by mpouillo          #+#    #+#             */
-/*   Updated: 2026/01/22 16:01:25 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/24 09:29:59 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-// Sets data->strategy and consumes an argv
+// Set data->strategy and consume an argv.
 static void	apply_strategy(t_pushswap *data, int strategy)
 {
 	data->strategy = strategy;
@@ -20,8 +20,8 @@ static void	apply_strategy(t_pushswap *data, int strategy)
 	data->argv += 1;
 }
 
-// Checks the first 2 elements of data->argv and
-// update strategy and bench_mode accordingly
+// Iterate as long as data->argv starts with "--".
+// Exits with an error if duplicate flags are found.
 void	parse_flags(t_pushswap *data)
 {
 	int	i;
@@ -39,7 +39,7 @@ void	parse_flags(t_pushswap *data)
 		}
 		else if (data->strategy)
 			error_termination(data);
-		if (ft_strncmp(data->argv[i], "--simple", 9) == 0)
+		else if (ft_strncmp(data->argv[i], "--simple", 9) == 0)
 			apply_strategy(data, STRATEGY_SIMPLE);
 		else if (ft_strncmp(data->argv[i], "--medium", 9) == 0)
 			apply_strategy(data, STRATEGY_MEDIUM);
@@ -47,6 +47,5 @@ void	parse_flags(t_pushswap *data)
 			apply_strategy(data, STRATEGY_COMPLEX);
 		else if (ft_strncmp(data->argv[i], "--adaptive", 11) == 0)
 			apply_strategy(data, STRATEGY_ADAPTIVE);
-		i++;
 	}
 }
