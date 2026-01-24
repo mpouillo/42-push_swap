@@ -47,6 +47,10 @@ static void	test_algorithm(t_pushswap *data, int flag, void (*algorithm)(t_pushs
 		run_silent(data, algorithm);
 	else
 		algorithm(data);
+	if (check_stack_sorted(data->a) == SUCCESS)
+		ft_printf("OK\n");
+	else
+		ft_printf("KO\n");
 }
 
 int main(int argc, char **argv)
