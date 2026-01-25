@@ -20,7 +20,7 @@ static void	apply_strategy(t_pushswap *data, int strategy)
 	data->argv += 1;
 }
 
-static void apply_bench_mode(t_pushswap *data)
+static void	apply_bench_mode(t_pushswap *data)
 {
 	if (data->bench_mode)
 		error_termination(data);

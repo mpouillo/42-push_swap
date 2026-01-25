@@ -6,12 +6,12 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 03:12:19 by chafonta          #+#    #+#             */
-/*   Updated: 2026/01/24 08:06:54 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/01/25 14:23:19 by chafonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BONUS_GET_NEXT_LINE_H
-# define BONUS_GET_NEXT_LINE_H
+#ifndef ET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
