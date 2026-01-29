@@ -19,7 +19,7 @@ static size_t	calculate_max_bits(t_pushswap *data)
 
 	max_index = data->a->length - 1;
 	max_bits = 0;
-	while ((max_index >> max_bits) != 0)
+	while (max_index >> max_bits != 0)
 		max_bits++;
 	return (max_bits);
 }
@@ -46,20 +46,37 @@ static void	index_stack(t_pushswap *data)
 	}
 }
 
+static void	push_back_to_a(t_pushswap *data, size_t i, size_t max_bits)
+{
+	size_t	length_b;
+	size_t	j;
+
+	j = 0;
+	length_b = data->b->length;
+	while (j < length_b)
+	{
+		if ((data->b->head->index >> (i + 1)) & 1 || i + 1 == max_bits)
+			pa(data);
+		else
+			rb(data);
+		j++;
+	}
+}
+
 static void	sort(t_pushswap *data)
 {
-	size_t	length;
+	size_t	length_a;
 	size_t	max_bits;
 	size_t	i;
-	size_t	j;	
+	size_t	j;
 
-	length = data->a->length;
-	max_bits = calculate_max_bits(data);
 	i = 0;
+	max_bits = calculate_max_bits(data);
 	while (i < max_bits)
 	{
 		j = 0;
-		while (j < length)
+		length_a = data->a->length;
+		while (j < length_a)
 		{
 			if ((data->a->head->index >> i) & 1)
 				ra(data);
@@ -67,8 +84,7 @@ static void	sort(t_pushswap *data)
 				pb(data);
 			j++;
 		}
-		while (data->b->length > 0)
-			pa(data);
+		push_back_to_a(data, i, max_bits);
 		i++;
 	}
 }
