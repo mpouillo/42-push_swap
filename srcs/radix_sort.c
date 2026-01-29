@@ -80,7 +80,7 @@ static void	sort(t_pushswap *data)
 		{
 			if ((data->a->head->index >> i) & 1)
 				ra(data);
-			else
+			else if (check_stack_sorted(data->a) == -1)
 				pb(data);
 			j++;
 		}
