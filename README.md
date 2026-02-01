@@ -52,20 +52,71 @@ stack).
 - The benchmark output must be sent to stderr and only appear when the flag is present.
 
 #### Algorithms used
-
+**Reminder:** `n` is referring to the number of items that are given to sort.
 - `--simple`: Selection sort
 	- A simple O(n²) sorting algorithm.
 	- The goal is to keep looking for the smallest element in stack `a`, and push it to stack `b` until stack `a` is empty. The contents of stack `b` are then pushed back into stack `a`, resulting in a sorted state.
 	- Optimizations were made by finding the shortest path to the smallest element (i.e., picking whether to rotate with `ra` or `rra`) and checking if the stack is sorted at every step.
 	- We picked this algorithm over other O(n²) sorting algorithms like bubble sort or insertion sort because it showed the best results after optimizations, getting about half and a quarter of the operations of insertion and bubble sort respectively.
 - `--medium`: Butterfly algorithm
-	- A fairly optimized O(n√n) sorting algorithm.
-	- **TODO**: how it works
-	- **TODO**: why we picked it
-- **TODO**: complex algorithm
-	- **TODO**: short description
-	- **TODO**: how it works
-	- **TODO**: why we picked it
+	- A greatly optimized O(n√n) sorting algorithm.
+	- How it works:
+		1. <u>Pushing to `b`:</u>
+		Sorts the `a` stack into an array. Then goes through stack `a` and searches for items that are within the first `√n + i` elements of the sorted stack, `i` being an index starting at 0. If so, pushes them to `b` and increments `i` by one. Repeats until `a` is empty. If an item is only within the `i` range, it rotates `b` after pushing it. This condition makes the `b` stack looking like an "hourglass", or, a **"butterfly"**. The butterfly shape is very useful as the biggest values, rather than all sitting at the top in a triangle shape, are now sitting at both extremities of the `b` stack, making pushing them back to `a` much more efficient.
+		2. <u>Pushing back to `a`:</u>
+		Now that the `a` stack is empty and that the `b` stack looks like a pretty **butterfly**, the algorithm simply searches for the biggest item of `b`; if it is near the top, rotates until it's the `head` and then pushes it to `a`, if it's near the bottom, revers rotates until it's the `head`, and then pushes it `b`: `a` is then sorted!
+	- We picked this algorithm as looking for solutions, we understood that a "range-based" algorithm was the overall dominating strategy for a `√n` complexity. The only real choice was how do we implement it, and this is the way that worked and made the most sense for us.
+- `--complex`: Radix sort
+	- An optimized O(nlogn) sorting algorithm.
+	- Radix sort operates by comparing each digit of numbers one by one and assigning the numbers to groups based on their digit, by each iterations, the digits within the groups are sorted by their previous digits. Once the final digit is reached, everything is in order. It is not the smartest, as it will always take the same number of operations whether the stack is roughly ordered or not, but it's advantage is that it thrives in sorting large quantities, being our most optimized algorithm around 1000 items.
+	- As we only have two stacks to compare ten digits, the implementation of the radix logic to push_swap pretty much begged us to use base two _(aka binary)_, this was possible by using two of the bitwise operators available in C: **`>>` (right shift)** and **`&` (bitwise AND)**.
+		- `x >> i`:
+		Shifts the integer `x` from `i` bits to the right, i.e converts an integer into binary and literally removes the first n digits of the number, starting from the right; e.g.
+		```
+		for x = 25, i = 2,
+			25 (base 10) = 11001 (base 2)
+			11001 >> 2 = 110
+
+		-> 25 >> 2 = 110
+		```
+		- `x & (0/1)`: Simply the logic comparator `AND`, using the last bit of an integer; e.g.
+		```
+		0 & 0 = 0		10 & 0 = 0
+		1 & 0 = 0		11 & 0 = 0
+		0 & 1 = 0		10 & 1 = 0 
+		1 & 1 = 1		11 & 1 = 1
+		
+		(note that everything is in base 2 in this exemple)
+		```
+		Our usage:
+		```
+		1001 & 1 = 1	-> rotate a
+		1010 & 1 = 0	-> push to b
+		
+		(note that everything is in base 2 in this exemple)
+		```
+		To achieve this, we used both of these operators in the same condition, here is what would be the simplified logic of the algorithm:
+		```c
+		int	i;
+		int	j;
+
+		i = 0;
+		while (i < bits_of_max)	// number of bits of the biggest item to sort
+		{
+			j = 0;
+			while (j < length_a)	// goes through all the items of stack a
+			{
+				if ((stack_a->head >> i) & 1)	// looks whether the i-th bit is 1 or 0
+					ra;	// keeps the 1s in a
+				else
+					pb;	// pushes the 0s to b
+				j++:	// goes to next item
+			}
+			push_b_back_to_a;	// every item was compared, put b back on top of a
+			i++;	// goes to the next bit of the items
+		}
+		```
+	- We initially aimed to go for a "quick sort" algorithm, sadly we did NOT understand how to implement it to the push_swap problem. We heard about the radix solution by our peers, and after researches, while the bitwise operators were intimidating and new concepts for us, we were too deep to step back, so we embraced the radix logic and found great ways to implement it to our project and even to optimize it.
 
 #### Bonus
 
@@ -129,4 +180,5 @@ $> shuf -i 0-9999 -n 500 > args.txt | ./push_swap $(cat args.txt) | ./checker $(
 
 - [Project link](https://projects.intra.42.fr/projects/42next-push_swap) (requires access to the 42 intra)
 - [Push swap visualizer](https://push-swap42-visualizer.vercel.app/)
+- [Push_Swap Tutorial](https://medium.com/nerd-for-tech/push-swap-tutorial-fa746e6aba1e)
 - AI was used to help understand algorithming concepts, but not to generate any code.
