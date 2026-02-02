@@ -12,6 +12,13 @@
 
 #include "../includes_bonus/checker_bonus.h"
 
+static void	free_and_terminate (char *line, t_pushswap *data)
+{
+	free(line);
+	line = NULL;
+	error_termination(data);
+}
+
 static void	parse_line(t_pushswap *data, char *line)
 {
 	if (ft_strncmp(line, "pa\n", 3) == 0)
@@ -37,7 +44,7 @@ static void	parse_line(t_pushswap *data, char *line)
 	else if (ft_strncmp(line, "ss\n", 3) == 0)
 		ss(data);
 	else
-		error_termination(data);
+		free_and_terminate(line, data);
 }
 
 static void	run_checker(t_pushswap *data)
@@ -74,7 +81,7 @@ int	main(int argc, char **argv)
 	parse_flags(data);
 	parse_input(data);
 	run_checker(data);
-	if (check_stack_sorted(data->a) == SUCCESS)
+	if (check_stack_sorted(data->a) == SUCCESS && !data->b->head)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
