@@ -6,7 +6,7 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 09:41:44 by mpouillo          #+#    #+#             */
-/*   Updated: 2026/01/24 09:56:55 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/02/02 13:31:49 by chafonta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,7 @@ void	parse_flags(t_pushswap *data)
 			apply_strategy(data, STRATEGY_COMPLEX);
 		else if (ft_strncmp(data->argv[i], "--adaptive", 11) == 0)
 			apply_strategy(data, STRATEGY_ADAPTIVE);
+		else
+			error_termination(data);
 	}
 }
