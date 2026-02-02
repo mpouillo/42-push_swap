@@ -131,6 +131,11 @@ stack).
 
 	- We initially aimed to go for a "quick sort" algorithm, sadly we did NOT understand how to adapt it to the push_swap problem. We heard about the radix solution by our peers, and after research, while the bitwise operators were intimidating and new concepts for us, we were too deep to step back, so we embraced the radix logic and found great ways to implement it in our project and even to optimize it.
 
+- `--adaptive`: A sorting alorithm is picked depending on the computed disorder of stack `a`, such that:
+	- **Low disorder**: if `disorder < 0.2`, the chosen method must run in O(n²) time. We therefore picked our O(n²) algorithm, selection sort.
+	- **Medium disorder**: if `0.2 <= disorder < 0.5`, the chosen method must run in O(n√n) time. Butterfly algorithm was our choice for this disorder range.
+	- **High disorder**: if `disorder >= 0.5`, the chosen method must run in O(nlogn) time. Lastly, we went with radix sort in that case.
+
 #### Bonus
 
 - Write a program named checker that takes as an argument the stack `a` formatted as a list of integers. The first argument should be at the top of the stack (be careful about the order). If no argument is given, it stops and displays nothing.
