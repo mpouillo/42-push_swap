@@ -177,7 +177,7 @@ Run the checker (bonus):
 $> ./checker [args]
 
 # Example use:
-$> shuf -i 0-9999 -n 500 > args.txt | ./push_swap $(cat args.txt) | ./checker $(args.txt)
+$> shuf -i 0-9999 -n 500 > args.txt; ./push_swap $(cat args.txt) | ./checker $(cat args.txt)
 # OK/KO
 ```
 
