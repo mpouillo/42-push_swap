@@ -6,13 +6,13 @@
 /*   By: mpouillo <mpouillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:03:11 by chafonta          #+#    #+#             */
-/*   Updated: 2026/01/24 10:21:49 by mpouillo         ###   ########.fr       */
+/*   Updated: 2026/02/03 10:24:32 by mpouillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_bonus/checker_bonus.h"
 
-static void	free_and_terminate (char *line, t_pushswap *data)
+static void	free_and_terminate(char *line, t_pushswap *data)
 {
 	free(line);
 	line = NULL;
